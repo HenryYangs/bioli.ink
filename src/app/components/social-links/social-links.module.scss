@@ -1,0 +1,27 @@
+.wrapper {
+  @apply flex justify-start items-center gap-4;
+
+  .corner-add {
+    @apply absolute top-[-40%] right-[-40%] text-[12px] bg-white text-[var(--border-color)] scale-50 border-[1px] border-[var(--border-color)];
+  }
+
+  .tail-add {
+    @apply bg-[var(--deep-background)];
+
+    i {
+      @apply text-[8px];
+    }
+  }
+}
+
+.social-link {
+  @apply relative cursor-pointer;
+
+  .social-link_icon {
+    @apply text-[var(--text-color)]  text-[20px];
+  }
+}
+
+.add-wrapper {
+  @apply flex justify-center items-center w-[24px] h-[24px] text-center rounded-full cursor-pointer;
+}

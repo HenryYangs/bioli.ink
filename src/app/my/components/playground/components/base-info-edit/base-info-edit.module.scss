@@ -1,0 +1,15 @@
+.base-info_edit {
+  @apply flex justify-center items-center w-[36px] h-[36px] bg-[var(--deep-background)] rounded-full cursor-pointer;
+}
+
+.edit-wrapper {
+  @apply p-3 rounded-2xl bg-white;
+
+  li {
+    @apply flex justify-start items-center p-4 cursor-pointer rounded-full;
+  }
+}
+
+.edit-item_text {
+  @apply ml-2 font-medium;
+}

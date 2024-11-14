@@ -1,0 +1,363 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4745860 */
+  src: url('iconfont.woff2?t=1731573949563') format('woff2'),
+       url('iconfont.woff?t=1731573949563') format('woff'),
+       url('iconfont.ttf?t=1731573949563') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-social-link-juejin:before {
+  content: "\e60c";
+}
+
+.icon-social-link-feishu:before {
+  content: "\e60d";
+}
+
+.icon-social-link-maimai:before {
+  content: "\e7c4";
+}
+
+.icon-social-link-xianyu:before {
+  content: "\e91e";
+}
+
+.icon-social-link-pdd:before {
+  content: "\e653";
+}
+
+.icon-social-link-we-com:before {
+  content: "\e6af";
+}
+
+.icon-social-link-jd:before {
+  content: "\e8dd";
+}
+
+.icon-social-link-lagou:before {
+  content: "\e606";
+}
+
+.icon-social-link-bosszhipin:before {
+  content: "\e60a";
+}
+
+.icon-social-link-medium:before {
+  content: "\e87d";
+}
+
+.icon-social-link-alipay:before {
+  content: "\e87e";
+}
+
+.icon-social-link-taobao:before {
+  content: "\e881";
+}
+
+.icon-social-link-zhihu:before {
+  content: "\e885";
+}
+
+.icon-social-link-facebook:before {
+  content: "\e886";
+}
+
+.icon-social-link-skype:before {
+  content: "\e887";
+}
+
+.icon-social-link-aliwangwang:before {
+  content: "\e888";
+}
+
+.icon-social-link-gitlab:before {
+  content: "\e889";
+}
+
+.icon-social-link-dribble:before {
+  content: "\e88a";
+}
+
+.icon-social-link-instagram:before {
+  content: "\e88b";
+}
+
+.icon-social-link-dropbox:before {
+  content: "\e88d";
+}
+
+.icon-social-link-dingtalk:before {
+  content: "\e88e";
+}
+
+.icon-social-link-linkedin:before {
+  content: "\e764";
+}
+
+.icon-social-link-email:before {
+  content: "\e60b";
+}
+
+.icon-social-link-twitch:before {
+  content: "\eeb7";
+}
+
+.icon-social-link-phone:before {
+  content: "\e6c2";
+}
+
+.icon-social-link-meetup:before {
+  content: "\e6c9";
+}
+
+.icon-social-link-baihe:before {
+  content: "\e614";
+}
+
+.icon-social-link-momo:before {
+  content: "\e600";
+}
+
+.icon-social-link-tantan:before {
+  content: "\e610";
+}
+
+.icon-social-link-behance:before {
+  content: "\e87a";
+}
+
+.icon-social-link-amazon:before {
+  content: "\e87b";
+}
+
+.icon-social-link-slack:before {
+  content: "\e87c";
+}
+
+.icon-social-link-reddit:before {
+  content: "\e87f";
+}
+
+.icon-social-link-youtube:before {
+  content: "\e880";
+}
+
+.icon-social-link-qq:before {
+  content: "\e882";
+}
+
+.icon-social-link-weibo:before {
+  content: "\e883";
+}
+
+.icon-social-link-wechat:before {
+  content: "\e884";
+}
+
+.icon-social-link-website:before {
+  content: "\e694";
+}
+
+.icon-social-link-whatsapp:before {
+  content: "\e8ea";
+}
+
+.icon-social-link-lofter:before {
+  content: "\e9d6";
+}
+
+.icon-social-link-duolinguo:before {
+  content: "\eaa7";
+}
+
+.icon-social-link-jiayuan:before {
+  content: "\eb39";
+}
+
+.icon-social-link-snapchat:before {
+  content: "\e7ab";
+}
+
+.icon-social-link-tumblr:before {
+  content: "\e7ae";
+}
+
+.icon-social-link-xiaohongshu:before {
+  content: "\e601";
+}
+
+.icon-social-link-hupu:before {
+  content: "\e609";
+}
+
+.icon-social-link-discord:before {
+  content: "\e675";
+}
+
+.icon-social-link-patreon:before {
+  content: "\e72f";
+}
+
+.icon-social-link-spotify:before {
+  content: "\e774";
+}
+
+.icon-social-link-douban:before {
+  content: "\e604";
+}
+
+.icon-social-link-xueqiu:before {
+  content: "\e7bd";
+}
+
+.icon-social-link-baobaoshu:before {
+  content: "\e85e";
+}
+
+.icon-social-link-apple-music:before {
+  content: "\e602";
+}
+
+.icon-social-link-github:before {
+  content: "\e6ea";
+}
+
+.icon-social-link-play-store:before {
+  content: "\e70a";
+}
+
+.icon-social-link-telegram:before {
+  content: "\e727";
+}
+
+.icon-social-link-last-fm:before {
+  content: "\e763";
+}
+
+.icon-social-link-artstation:before {
+  content: "\eb42";
+}
+
+.icon-social-link-bandcamp:before {
+  content: "\eb4a";
+}
+
+.icon-social-link-goodreads:before {
+  content: "\eba8";
+}
+
+.icon-social-link-signal:before {
+  content: "\ec9a";
+}
+
+.icon-social-link-tiktok:before {
+  content: "\ecdc";
+}
+
+.icon-social-link-vimeo:before {
+  content: "\ecfd";
+}
+
+.icon-social-link-bilibili:before {
+  content: "\e66d";
+}
+
+.icon-social-link-kuaishou:before {
+  content: "\e8dc";
+}
+
+.icon-social-link-tangdou:before {
+  content: "\e603";
+}
+
+.icon-social-link-onlyfans:before {
+  content: "\e64a";
+}
+
+.icon-social-link-substack:before {
+  content: "\e6cf";
+}
+
+.icon-social-link-qinbaobao:before {
+  content: "\e638";
+}
+
+.icon-social-link-venmo:before {
+  content: "\e9b7";
+}
+
+.icon-social-link-unsplash:before {
+  content: "\ec2a";
+}
+
+.icon-social-link-cameo:before {
+  content: "\e6f1";
+}
+
+.icon-social-link-clubhouse:before {
+  content: "\e6f0";
+}
+
+.icon-social-link-apple-podcasts:before {
+  content: "\e621";
+}
+
+.icon-social-link-poshmark:before {
+  content: "\e605";
+}
+
+.icon-social-link-soul:before {
+  content: "\e6f4";
+}
+
+.icon-social-link-google-podcast:before {
+  content: "\e839";
+}
+
+.icon-social-link-pintrest:before {
+  content: "\e98b";
+}
+
+.icon-social-link-threads:before {
+  content: "\e7ac";
+}
+
+.icon-social-link-mastodon:before {
+  content: "\e6de";
+}
+
+.icon-social-link-esty:before {
+  content: "\e68f";
+}
+
+.icon-social-link-soundcloud:before {
+  content: "\e8e5";
+}
+
+.icon-social-link-mafengwo:before {
+  content: "\e607";
+}
+
+.icon-social-link-kick:before {
+  content: "\e716";
+}
+
+.icon-social-link-bluesky:before {
+  content: "\ea98";
+}
+
+.icon-social-link-app-store:before {
+  content: "\e785";
+}
+
+.icon-social-link-x:before {
+  content: "\e608";
+}
+
