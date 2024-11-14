@@ -1,6 +1,8 @@
 import { Avatar } from '@nextui-org/avatar';
+import { Button } from '@nextui-org/button';
 
 import SocialLinks from '@/app/components/social-links';
+import { cls } from '@/app/utils/string';
 
 import BaseInfoEdit from './components/base-info-edit';
 import style from './playground.module.scss';
@@ -22,6 +24,19 @@ export default function Playground() {
           </div>
 
           <BaseInfoEdit />
+        </section>
+
+        <section className={style['add-module']}>
+          <Button className={style['add-link']}>
+            <i className={cls('iconfont', 'icon-my-plus', style['add-link_icon'])}></i>
+            <span>添加链接</span>
+          </Button>
+
+          <Button className={style['add-other-module']}>添加其它模块</Button>
+        </section>
+
+        <section className={style.modules}>
+          
         </section>
       </main>
 
