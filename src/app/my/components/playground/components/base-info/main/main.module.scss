@@ -1,0 +1,23 @@
+.main {
+  @apply flex justify-start items-center gap-4;
+}
+
+.content {
+  @apply flex flex-col;
+}
+
+.avatar {
+  @apply cursor-pointer;
+}
+
+.username {
+  @apply text-xl font-bold;
+}
+
+.description {
+  @apply text-sm font-light text-[var(--text-color)];
+}
+
+.social-links {
+  @apply mt-2;
+}

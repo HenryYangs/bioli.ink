@@ -5,8 +5,8 @@ import { useState } from 'react';
 
 import { cls } from '@/app/utils/string';
 
-import style from './base-info-edit.module.scss';
 import { BASE_INFO_EDIT } from './config';
+import style from './edit.module.scss';
 
 export default function BaseInfoEdit() {
   const [isOpen, setIsOpen] = useState(false);
