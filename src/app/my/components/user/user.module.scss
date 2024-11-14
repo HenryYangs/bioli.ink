@@ -1,0 +1,23 @@
+.trigger {
+  @apply flex justify-start items-center p-[5px] bg-transparent;
+}
+
+.username {
+  @apply font-semibold text-lg;
+}
+
+.content {
+  @apply flex flex-col gap-4 p-4 bg-white rounded-2xl min-w-[300px];
+}
+
+.user {
+  @apply flex justify-start items-start gap-4;
+}
+
+.info-name {
+  @apply text-lg font-bold;
+}
+
+.info-link {
+  @apply text-sm font-light text-[var(--text-color)];
+}

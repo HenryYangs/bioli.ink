@@ -1,0 +1,7 @@
+@layer components {
+  .hover-bg {
+    &:hover {
+      @apply bg-black/5;
+    }
+  }
+}
