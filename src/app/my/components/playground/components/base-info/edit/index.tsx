@@ -3,6 +3,7 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@nextui-org/popover';
 import { useState } from 'react';
 
+import { BaseInfoEditTrigger } from '@/app/types/my/base-info';
 import { cls } from '@/app/utils/string';
 
 import { BASE_INFO_EDIT } from './config';
@@ -11,7 +12,8 @@ import style from './edit.module.scss';
 export default function BaseInfoEdit() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const onItemClick = () => {
+  const onItemClick = (item: BaseInfoEditTrigger) => {
+    item.action?.();
     setIsOpen(false);
   }
 
@@ -30,7 +32,7 @@ export default function BaseInfoEdit() {
         <ul className={style['edit-wrapper']}>
           {
             BASE_INFO_EDIT.map(item => (
-              <li key={item.id} className='hover-bg' onClick={onItemClick}>
+              <li key={item.id} className='hover-bg' onClick={() => onItemClick(item)}>
                 <i className={cls('iconfont', `icon-my-${item.icon}`)}></i>
                 <span className={style['edit-item_text']}>{item.title}</span>
               </li>

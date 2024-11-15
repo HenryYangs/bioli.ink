@@ -35,6 +35,8 @@ export default function BaseInfoMain() {
   useEventListener({
     [EVENTS.USERNAME_UPDATE]: setUsername,
     [EVENTS.INTRO_UPDATE]: setIntro,
+    [EVENTS.AVATAR_CLICK]: onAvatarClick,
+    [EVENTS.USERNAME_INTRO_CLICK]: onBaseInfoEdit,
   });
 
   return (
