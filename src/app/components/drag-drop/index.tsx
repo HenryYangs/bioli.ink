@@ -11,15 +11,21 @@ import style from './drag-drop.module.scss';
 import { DragAndDropProps } from './types';
 
 const DragAndDrop = (props: DragAndDropProps = {}) => {
-  const { type = FileType.FILE, multiple = false } = props;
+  const { type = FileType.FILE, multiple = false, accept = '' } = props;
   const [, setFiles] = useState<any[]>([]);
-  const [isDragging, setIsDragging] = useState(false); // 新增状态
+  const [isDragging, setIsDragging] = useState(false);
 
   const updateFile = (files: any[]) => {
     const newFiles = Array.from(files);
+    // 校验文件类型是否符合要求
+    const validFiles = accept ? newFiles.filter(file => {
+      const target = accept.split('/')[0];
+
+      return file.type.startsWith(target);
+    }) : newFiles;
 
     setFiles((prevFiles) => {
-      const result = multiple ? [...prevFiles, ...newFiles] : newFiles;
+      const result = multiple ? [...prevFiles, ...validFiles] : validFiles;
 
       event.emit(EVENTS.AVATAR_UPDATE, result);
 
@@ -27,9 +33,10 @@ const DragAndDrop = (props: DragAndDropProps = {}) => {
     });
   }
 
-  const handleDrop = (ev: any) => {
+  const handleDrop = async (ev: any) => {
     ev.preventDefault();
     setIsDragging(false); // 重置拖拽状态
+
     updateFile(ev.dataTransfer.files);
   };
 
@@ -61,7 +68,7 @@ const DragAndDrop = (props: DragAndDropProps = {}) => {
           <i className={cls('iconfont', `icon-my-${type}`, style['icon-type'])}></i>
         </p>
         <p>拖拽{FILE_TYPE_MAP[type]}到这里<br />或点击选择{FILE_TYPE_MAP[type]}</p>
-        <input type='file' onChange={handleChange} style={{ display: 'none' }} id='fileInput' />
+        <input type='file' onChange={handleChange} style={{ display: 'none' }} id='fileInput' accept={accept} />
       </label>
     </div>
   );

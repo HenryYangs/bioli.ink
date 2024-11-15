@@ -13,6 +13,7 @@ import DragAndDrop from '@/app/components/drag-drop';
 import { EVENTS } from '@/app/constant/events';
 import { useDebounceEffect } from '@/app/hooks/use-debounce-effect';
 import { useEventListener } from '@/app/hooks/use-event-listener';
+import { FileType } from '@/app/types/my';
 import { cls } from '@/app/utils/string';
 import { file2base64 } from '@/app/utils/transform';
 
@@ -162,7 +163,7 @@ export default function PersonalAvatar() {
             >{BTN_CONFIRM_TEXT[status]}</Button>
           </div>
         </>
-      ) : <DragAndDrop />}
+      ) : <DragAndDrop type={FileType.IMAGE} accept='image/*' />}
     </>
   );
 };
