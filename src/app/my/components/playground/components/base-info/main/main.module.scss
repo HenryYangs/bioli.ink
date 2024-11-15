@@ -7,7 +7,11 @@
 }
 
 .avatar {
-  @apply w-[64px] h-[64px] cursor-pointer;
+  @apply w-[64px] h-[64px] cursor-pointer transition-all;
+
+  &:hover {
+    @apply shadow-xl;
+  }
 }
 
 .icon-delete {
@@ -19,11 +23,19 @@
 }
 
 .username {
-  @apply text-xl font-bold;
+  @apply text-xl font-bold cursor-pointer;
+
+  &:hover {
+    @apply underline;
+  }
 }
 
 .description {
-  @apply text-sm font-light text-[var(--text-color)];
+  @apply text-sm font-light text-[var(--text-color)] cursor-pointer;
+
+  &:hover {
+    @apply underline;
+  }
 }
 
 .social-links {
