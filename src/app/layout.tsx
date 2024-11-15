@@ -4,6 +4,8 @@ import './assets/style/global.scss';
 import { NextUIProvider } from '@nextui-org/system';
 import type { Metadata } from 'next';
 
+import Modal from './components/modal';
+
 // const geistSans = localFont({
 //   src: './fonts/GeistVF.woff',
 //   variable: '--font-geist-sans',
@@ -27,14 +29,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        className='antialiased'
-      >
-        <NextUIProvider>
-          {children}
-        </NextUIProvider>
-      </body>
+        <body
+          // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className='antialiased'
+          >
+          <NextUIProvider>
+            {children}
+            
+            <Modal />
+          </NextUIProvider>
+        </body>
     </html>
   );
 }

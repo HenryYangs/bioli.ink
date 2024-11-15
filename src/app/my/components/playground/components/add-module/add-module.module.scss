@@ -2,18 +2,12 @@
   @apply flex justify-between items-center gap-4 mt-[30px];
 
   & > * {
-    @apply flex-1 rounded-full;
+    @apply flex-1;
   }
 }
 
 .add-link {
-  @apply bg-[var(--main-color)] text-white;
-
   .add-link_icon {
     @apply text-[12px];
   }
-}
-
-.add-other-module {
-  @apply text-[var(--main-color)] bg-white;
 }

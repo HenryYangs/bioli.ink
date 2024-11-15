@@ -1,0 +1,5 @@
+export enum EVENTS {
+  SHOW_MODAL = 'SHOW_MODAL',
+  HIDE_MODAL = 'HIDE_MODAL',
+  AVATAR_UPDATE = 'AVATAR_UPDATE', // 修改头像时，头像有更新
+}

@@ -7,7 +7,15 @@
 }
 
 .avatar {
-  @apply cursor-pointer;
+  @apply w-[64px] h-[64px] cursor-pointer;
+}
+
+.icon-delete {
+  @apply text-[12px] leading-[1];
+}
+
+.avatar-delete {
+  @apply p-[4px];
 }
 
 .username {

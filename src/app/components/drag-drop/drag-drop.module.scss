@@ -1,0 +1,11 @@
+.wrapper {
+  @apply border-[1px] border-dashed border-[var(--border-secondary-color)] bg-white;
+}
+
+.file-area {
+  @apply flex flex-col justify-center items-center p-[20px] cursor-pointer;
+
+  .icon-type {
+    @apply text-[48px];
+  }
+}

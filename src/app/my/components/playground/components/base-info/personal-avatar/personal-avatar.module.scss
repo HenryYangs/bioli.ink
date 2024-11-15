@@ -1,0 +1,11 @@
+.btn-wrapper {
+  @apply flex justify-between items-center gap-4 mt-[20px];
+
+  & > * {
+    flex: 1;
+  }
+}
+
+.btn-cancel {
+  @apply border-[var(--border-color)] border-[1px];
+}

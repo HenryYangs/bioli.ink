@@ -1,0 +1,8 @@
+.btn-main-color {
+  @apply bg-[var(--main-color)] text-white;
+}
+
+// 主色调旁边的按钮，一般都是和 .btn-main-color 一起用
+.btn-main-color-other {
+  @apply text-[var(--main-color)] bg-white;
+}
