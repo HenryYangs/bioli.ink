@@ -28,7 +28,7 @@ export default function Navigator() {
               className={[style['nav-item'], currentPath === item.redirect ? style.active : ''].join(' ')}
             >
               <a className={style['nav-item_link']} href={item.redirect}>
-                <i className={`iconfont icon-my-${item.icon}`}></i>
+                <i className={`iconfont-my icon-my-${item.icon}`}></i>
 
                 <span className={style['nav-item_name']}>{item.name}</span>
               </a>

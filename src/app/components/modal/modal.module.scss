@@ -1,0 +1,19 @@
+.wrapper {
+  @apply min-w-[520px];
+}
+
+.title-wrapper {
+  @apply flex justify-between items-center w-full;
+}
+
+.title {
+  @apply flex-1 text-center;
+}
+
+.icon-action {
+  @apply cursor-pointer opacity-80;
+
+  &:hover {
+    @apply opacity-100;
+  }
+}

@@ -109,7 +109,7 @@ export default function PersonalAvatar() {
         <>
           <Button
             size='md'
-            startContent={<i className='iconfont icon-my-reset'></i>}
+            startContent={<i className='iconfont-my icon-my-reset'></i>}
             color='warning'
             variant='ghost'
             className='w-[36px]'

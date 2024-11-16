@@ -29,7 +29,7 @@ export default function More() {
                     key={item.key}
                     isDisabled={item.disabled === true}
                     onPress={() => onHelpItemPress(item)}
-                    startContent={<i className={cls('iconfont', `icon-my-${item.icon}`)}></i>}
+                    startContent={<i className={cls('iconfont-my', `icon-my-${item.icon}`)}></i>}
                   >{item.name}</ListboxItem>
                 ))
               }

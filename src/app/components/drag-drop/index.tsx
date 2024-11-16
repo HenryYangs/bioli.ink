@@ -65,7 +65,7 @@ const DragAndDrop = (props: DragAndDropProps = {}) => {
     >
       <label htmlFor='fileInput' className={style['file-area']}>
         <p>
-          <i className={cls('iconfont', `icon-my-${type}`, style['icon-type'])}></i>
+          <i className={cls('iconfont-my', `icon-my-${type}`, style['icon-type'])}></i>
         </p>
         <p>拖拽{FILE_TYPE_MAP[type]}到这里<br />或点击选择{FILE_TYPE_MAP[type]}</p>
         <input type='file' onChange={handleChange} style={{ display: 'none' }} id='fileInput' accept={accept} />

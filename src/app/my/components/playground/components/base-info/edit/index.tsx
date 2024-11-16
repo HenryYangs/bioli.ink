@@ -25,7 +25,7 @@ export default function BaseInfoEdit() {
     >
       <PopoverTrigger>
         <div className={style['base-info_edit']}>
-          <i className={cls('iconfont', 'icon-my-ellipsis')}></i>
+          <i className={cls('iconfont-my', 'icon-my-ellipsis')}></i>
         </div>
       </PopoverTrigger>
       <PopoverContent>
@@ -33,7 +33,7 @@ export default function BaseInfoEdit() {
           {
             BASE_INFO_EDIT.map(item => (
               <li key={item.id} className='hover-bg' onClick={() => onItemClick(item)}>
-                <i className={cls('iconfont', `icon-my-${item.icon}`)}></i>
+                <i className={cls('iconfont-my', `icon-my-${item.icon}`)}></i>
                 <span className={style['edit-item_text']}>{item.title}</span>
               </li>
             ))

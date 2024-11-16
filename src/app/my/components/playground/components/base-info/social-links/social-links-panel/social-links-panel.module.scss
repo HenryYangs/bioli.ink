@@ -1,0 +1,19 @@
+.my-links {
+  @apply mt-[20px];
+}
+
+.drag-ghost {
+  @apply opacity-0;
+}
+
+.drag-chosen {
+  @apply bg-white shadow cursor-grabbing cursor-[-webkit-grabbing];
+}
+
+.icon-position {
+  @apply mt-[20px];
+
+  &-options {
+    @apply mt-[10px];
+  }
+}

@@ -10,7 +10,7 @@ import { cls } from '@/app/utils/string';
 
 import Info from '../info';
 import PersonalAvatar from '../personal-avatar';
-import SocialLinksPanel from '../social-links-panel';
+import SocialLinksPanel from '../social-links/social-links-panel';
 import style from './main.module.scss';
 
 export default function BaseInfoMain() {
@@ -52,7 +52,7 @@ export default function BaseInfoMain() {
     <div className={style.main}>
       <Badge
         isOneChar
-        content={<i className={cls('iconfont', 'icon-my-delete', style['icon-delete'])}></i>}
+        content={<i className={cls('iconfont-my', 'icon-my-delete', style['icon-delete'])}></i>}
         color='danger'
         shape='circle'
         className={style['avatar-delete']}

@@ -39,12 +39,12 @@ export default function SocialLinks({
             color='foreground'
             onPress={() => onClick?.(link)}
           >
-            <i className={cls('iconfont', `icon-social-link-${link.icon}`, style['social-link_icon'])}></i>
+            <i className={cls('iconfont-social-links', `icon-social-link-${link.icon}`, style['social-link_icon'])}></i>
 
             {
               (isEdit && !links.length) ? (
                 <div className={cls(style['add-wrapper'], style['corner-add'])}>
-                  <i className={cls('iconfont', 'icon-my-plus')}></i>
+                  <i className={cls('iconfont-my', 'icon-my-plus')}></i>
                 </div>
               ) : null
             }
@@ -58,7 +58,7 @@ export default function SocialLinks({
             className={cls(style['add-wrapper'], style['tail-add'])}
             onClick={() => onClick?.()}
           >
-            <i className={cls('iconfont', 'icon-my-plus')}></i>
+            <i className={cls('iconfont-my', 'icon-my-plus')}></i>
           </div>
         )
       }
