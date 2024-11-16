@@ -49,7 +49,11 @@ export default function Modal() {
   });
 
   return (
-    <ModalComponent isOpen={isOpen} onClose={onOpenChange}>
+    <ModalComponent
+      scrollBehavior='inside'
+      isOpen={isOpen}
+      onClose={onOpenChange}
+    >
       <ModalContent>
           {() => (
             <>

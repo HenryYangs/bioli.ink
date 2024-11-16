@@ -2,7 +2,7 @@
 
 import '@/app/assets/icon/my/iconfont.css';
 
-import Image from 'next/image';
+// import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 import UserEntry from '../user';
@@ -18,7 +18,7 @@ export default function Navigator() {
 
   return (
     <nav className={style.wrapper}>
-      <Image src='' alt='logo' />
+      {/* <Image src='' alt='logo' /> */}
 
       <ul className={style['nav-list']}>
         {

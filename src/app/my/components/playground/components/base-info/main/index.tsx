@@ -10,6 +10,7 @@ import { cls } from '@/app/utils/string';
 
 import Info from '../info';
 import PersonalAvatar from '../personal-avatar';
+import SocialLinksPanel from '../social-links-panel';
 import style from './main.module.scss';
 
 export default function BaseInfoMain() {
@@ -28,6 +29,14 @@ export default function BaseInfoMain() {
     event.emit(EVENTS.SHOW_MODAL, {
       title: '昵称和简介',
       body: <Info username={username} intro={intro} />,
+      footer: false,
+    });
+  };
+
+  const onSocialLinkClick = () => {
+    event.emit(EVENTS.SHOW_MODAL, {
+      title: '社交平台链接',
+      body: <SocialLinksPanel />,
       footer: false,
     });
   };
@@ -55,7 +64,7 @@ export default function BaseInfoMain() {
         <p className={style.username} onClick={onBaseInfoEdit}>@{username}</p>
         <p className={style.description} onClick={onBaseInfoEdit}>{intro}</p>
 
-        <SocialLinks links={[]} mode='edit' className={style['social-links']} />
+        <SocialLinks links={[]} mode='edit' className={style['social-links']} onClick={onSocialLinkClick} />
       </div>
     </div>
   );

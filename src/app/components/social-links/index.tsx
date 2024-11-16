@@ -16,6 +16,7 @@ export default function SocialLinks({
   links,
   mode = 'view',
   className = '',
+  onClick,
 }: SocialLinksProps) {
   const isEdit = mode === 'edit';
   const [renderList, setRenderList] = useState<SocialLink[]>([]);
@@ -32,7 +33,12 @@ export default function SocialLinks({
     <div className={cls(style.wrapper, className)}>
       {
         renderList.map(link => (
-          <Link key={link.id} className={style['social-link']} color='foreground'>
+          <Link
+            key={link.id}
+            className={style['social-link']}
+            color='foreground'
+            onPress={() => onClick?.(link)}
+          >
             <i className={cls('iconfont', `icon-social-link-${link.icon}`, style['social-link_icon'])}></i>
 
             {
@@ -48,7 +54,10 @@ export default function SocialLinks({
 
       {
         renderList.length === LIST_SOCIAL_LINKS.length ? null : (
-          <div className={cls(style['add-wrapper'], style['tail-add'])}>
+          <div
+            className={cls(style['add-wrapper'], style['tail-add'])}
+            onClick={() => onClick?.()}
+          >
             <i className={cls('iconfont', 'icon-my-plus')}></i>
           </div>
         )

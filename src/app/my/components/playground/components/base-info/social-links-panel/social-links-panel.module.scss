@@ -1,0 +1,27 @@
+.my-links {
+  @apply mt-[20px];
+}
+
+.icon-drag {
+  @apply cursor-grab cursor-[-webkit-grab];
+}
+
+.social-link-content {
+  @apply flex-1 flex justify-start items-center cursor-pointer p-4 rounded-lg;
+}
+
+.social-link-name {
+  @apply flex-1 font-semibold;
+}
+
+.social-link-item {
+  @apply flex justify-start items-center gap-4 px-2;
+}
+
+.drag-ghost {
+  @apply opacity-0;
+}
+
+.drag-chosen {
+  @apply bg-white shadow cursor-grabbing cursor-[-webkit-grabbing];
+}
