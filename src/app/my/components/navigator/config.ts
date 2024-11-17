@@ -1,7 +1,7 @@
 export const NAV_LIST = [
   {
     name: '设计',
-    icon: 'link',
+    icon: 'url',
     redirect: '/my'
   },
   {

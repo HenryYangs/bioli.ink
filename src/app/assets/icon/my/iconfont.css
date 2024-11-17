@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont-my"; /* Project id 4744984 */
-  src: url('iconfont.woff2?t=1731772807452') format('woff2'),
-       url('iconfont.woff?t=1731772807452') format('woff'),
-       url('iconfont.ttf?t=1731772807452') format('truetype');
+  src: url('iconfont.woff2?t=1731854433567') format('woff2'),
+       url('iconfont.woff?t=1731854433567') format('woff'),
+       url('iconfont.ttf?t=1731854433567') format('truetype');
 }
 
 .iconfont-my {
@@ -11,6 +11,30 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-my-emphasize:before {
+  content: "\e7df";
+}
+
+.icon-my-schedule:before {
+  content: "\e6c3";
+}
+
+.icon-my-lock:before {
+  content: "\e610";
+}
+
+.icon-my-skip:before {
+  content: "\e67f";
+}
+
+.icon-my-share:before {
+  content: "\e61d";
+}
+
+.icon-my-add:before {
+  content: "\e60f";
 }
 
 .icon-my-close:before {
@@ -93,7 +117,7 @@
   content: "\e676";
 }
 
-.icon-my-link:before {
+.icon-my-url:before {
   content: "\e7e2";
 }
 

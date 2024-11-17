@@ -1,0 +1,30 @@
+.wrapper {
+  @apply w-full h-[24px];
+}
+
+.text-wrapper {
+  @apply flex justify-start items-center gap-2 h-full cursor-pointer;
+}
+
+.text-placeholder {
+  @apply text-[14px] leading-[1] text-[var(--text-color)];
+}
+
+.input-base,
+.input-inner-wrapper {
+  @apply h-[24px];
+}
+
+.input-wrapper {
+  @apply h-[24px] min-h-[24px] !bg-transparent p-0;
+
+  &:hover,
+  &:focus,
+  &:active {
+    @apply bg-transparent;
+  }
+}
+
+.icon-edit {
+  @apply text-[var(--text-color)] font-normal;
+}

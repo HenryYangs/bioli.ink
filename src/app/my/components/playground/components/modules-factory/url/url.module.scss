@@ -1,0 +1,11 @@
+.content-wrapper {
+  @apply flex flex-col justify-start items-start gap-2;
+
+  & > * {
+    @apply flex-1;
+  }
+}
+
+.title {
+  @apply font-semibold;
+}

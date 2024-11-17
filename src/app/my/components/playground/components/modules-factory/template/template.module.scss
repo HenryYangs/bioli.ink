@@ -1,0 +1,63 @@
+.main {
+  @apply flex flex-row justify-start;
+}
+
+.drag-area {
+  @apply flex justify-center items-center w-8 cursor-grab;
+}
+
+.settings-wrapper {
+  @apply flex-1 flex justify-start items-center p-6 border-l-[1px] border-[var(--border-color)];
+}
+
+.core-wrapper {
+  @apply flex-1 flex flex-col gap-2;
+}
+
+.template-type {
+  @apply flex gap-2;
+}
+
+.action-wrapper {
+  @apply flex flex-col justify-center items-center gap-4 w-[60px];
+
+  & > * {
+    @apply flex-1;
+  }
+}
+
+.action-row {
+  @apply flex justify-start items-center w-full gap-2;
+}
+
+.template-visible {
+  @apply scale-75;
+}
+
+.icon-action {
+  @apply text-[var(--text-color)] cursor-pointer;
+
+  &:hover {
+    @apply text-[var(--main-color)]; // TODO 改颜色
+  }
+}
+
+.tools-wrapper {
+  @apply flex justify-start items-center gap-4;
+}
+
+.tool {
+  @apply text-[var(--text-color)] cursor-pointer;
+
+  &:hover {
+    @apply text-[var(--main-color)];
+  }
+
+  &.disabled {
+    @apply opacity-40 cursor-not-allowed;
+
+    &:hover {
+      @apply text-[var(--text-color)] opacity-40;
+    }
+  }
+}

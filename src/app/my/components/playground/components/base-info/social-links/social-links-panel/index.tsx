@@ -10,13 +10,13 @@ export default function SocialLinksPanel() {
 
   return (
     <div>
-      <p className='modal-inner-title'>通过配置社交平台链接，告诉大家在哪可以找到你~</p>
+      <p className='main-title'>通过配置社交平台链接，告诉大家在哪可以找到你~</p>
 
       <main className={style['my-links']} id='mySocialLinks'>
         <ReactSortable
           handle='.icon-drag'
-          ghostClass={style['drag-ghost']}
-          chosenClass={style['drag-chosen']}
+          ghostClass='drag-ghost'
+          chosenClass='drag-chosen'
           animation={200}
           list={list}
           setList={setList}
@@ -37,8 +37,8 @@ export default function SocialLinksPanel() {
       </main>
 
       <div className={style['icon-position']}>
-        <p className='modal-inner-title'>图标位置</p>
-        <p className='modal-secondary-title'>自定义社交平台图标的位置</p>
+        <p className='main-title'>图标位置</p>
+        <p className='secondary-title'>自定义社交平台图标的位置</p>
 
         <RadioGroup className={style['icon-position-options']}>
           <Radio value='top'>上方</Radio>
