@@ -1,0 +1,33 @@
+.wrapper {
+  @apply h-full overflow-auto;
+}
+
+.inner-wrapper {
+  @apply px-[15px] py-[33px];
+}
+
+.base-info {
+  @apply flex flex-col items-center;
+}
+
+.username {
+  @apply text-[16px] font-semibold mt-[15px];
+}
+
+.bio {
+  @apply max-w-[80%] text-center mt-[35px];
+
+  word-wrap: break-word;
+}
+
+.social-links {
+  @apply mt-[35px];
+}
+
+.user-modules {
+  @apply mt-[35px] flex flex-col gap-4;
+}
+
+.footer-logo {
+  @apply mt-[35px];
+}

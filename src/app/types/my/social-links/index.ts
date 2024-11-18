@@ -1,6 +1,6 @@
 import { SOCIAL_LINKS_TEXT } from '@/app/constant/list/social-links';
 
-export enum SocialLinks {
+export enum SocialPlatform {
   ALI_PAY = 'alipay',
   ALI_WANG_WANG = 'ali-wangwang',
   AMAZON = 'amazon',
@@ -93,8 +93,8 @@ export enum SocialLinks {
 
 type SocialLinkValues = typeof SOCIAL_LINKS_TEXT[keyof typeof SOCIAL_LINKS_TEXT];
 
-export interface SocialLink {
-  id: SocialLinks;
+export interface SocialLinkItem {
+  id: SocialPlatform;
   name: SocialLinkValues;
   icon: string;
 }

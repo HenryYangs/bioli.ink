@@ -1,0 +1,11 @@
+.wrapper {
+  @apply flex flex-col justify-center items-center;
+}
+
+.plain-text {
+  @apply text-[10px] font-semibold text-[var(--text-color)];
+}
+
+.domain {
+  @apply text-[18px] font-bold text-[var(--main-color)];
+}

@@ -1,9 +1,9 @@
-import { SocialLink, SocialLinks } from '@/app/types/my';
+import { SocialLinkItem, SocialPlatform } from '@/app/types/my';
 
 export interface SocialLinksProps {
-  links: SocialLinks[];
+  links: SocialPlatform[];
 
   mode?: 'edit' | 'view';
   className?: string;
-  onClick?: (link?: SocialLink) => void;
+  onClick?: (link?: SocialLinkItem) => void;
 }

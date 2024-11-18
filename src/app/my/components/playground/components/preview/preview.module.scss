@@ -6,19 +6,16 @@
   @apply mx-auto h-full flex justify-center items-center;
 }
 
-.preview-device-wrapper,
-.preview-device {
-  @apply transition-all duration-100 ease-out;
-}
+// TODO 窗口大小改变时的动画效果
+// .preview-device-wrapper,
+// .preview-device {
+//   @apply transition-all duration-100 ease-out;
+// }
 
 .preview-device-wrapper {
-  @apply relative text-[10px];
+  @apply w-[350px] h-[750px] border-5 border-[#333] rounded-[3em] shadow-2xl;
 }
 
-.preview-device {
-  @apply origin-top-left;
-}
-
-.preview-device-simulator {
-  @apply absolute top-[-1px] right-[-1px] bottom-[-1px] left-[-1px] border-5 border-[#333] rounded-[4em];
+.page-view {
+  @apply rounded-[3em];
 }

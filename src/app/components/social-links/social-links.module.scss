@@ -1,5 +1,5 @@
 .wrapper {
-  @apply flex justify-start items-center gap-4;
+  @apply flex justify-center items-center gap-4 flex-wrap;
 
   .corner-add {
     @apply absolute top-[-40%] right-[-40%] text-[12px] bg-white text-[var(--border-color)] scale-50 border-[1px] border-[var(--border-color)];
