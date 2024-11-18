@@ -1,0 +1,24 @@
+.preview-wrapper {
+  @apply w-[40%] h-[100vh] border-l-[1px] border-[var(--border-color)] text-[14px];
+}
+
+.preview-inner-wrapper {
+  @apply mx-auto h-full flex justify-center items-center;
+}
+
+.preview-device-wrapper,
+.preview-device {
+  @apply transition-all duration-100 ease-out;
+}
+
+.preview-device-wrapper {
+  @apply relative text-[10px];
+}
+
+.preview-device {
+  @apply origin-top-left;
+}
+
+.preview-device-simulator {
+  @apply absolute top-[-1px] right-[-1px] bottom-[-1px] left-[-1px] border-5 border-[#333] rounded-[4em];
+}
