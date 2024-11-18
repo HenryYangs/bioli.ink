@@ -7,6 +7,7 @@ import AddModule from './components/add-module';
 import BaseInfo from './components/base-info';
 import URL from './components/modules-factory/url';
 import Preview from './components/preview';
+import StyleSettings from './components/style-settings';
 import style from './playground.module.scss';
 
 export default function Playground() {
@@ -17,6 +18,8 @@ export default function Playground() {
       <main className={style['action-wrapper']}>
         <div className={style['action-inner-wrapper']}>
           <BaseInfo />
+
+          <StyleSettings />
 
           <AddModule />
 

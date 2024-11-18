@@ -1,0 +1,11 @@
+.wrapper {
+  @apply flex flex-col gap-2 pt-0;
+}
+
+.title {
+  @apply text-[14px];
+}
+
+.item-wrapper {
+  @apply flex flex-col gap-2;
+}

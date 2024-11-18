@@ -7,9 +7,9 @@
 }
 
 .action-inner-wrapper {
-  @apply max-w-[640px] mx-auto my-[20px] px-[20px];
+  @apply flex flex-col gap-8 max-w-[640px] mx-auto my-[20px] px-[20px];
 }
 
 .modules {
-  @apply mt-[40px] flex flex-col gap-4;
+  @apply flex flex-col gap-4;
 }

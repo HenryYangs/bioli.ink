@@ -1,0 +1,11 @@
+.wrapper {
+  @apply flex flex-row justify-between items-center px-[10px] py-[4px];
+}
+
+.title {
+  @apply text-[12px] text-[var(--main-text-color)];
+}
+
+.content {
+  @apply w-[40%] flex justify-end items-center;
+}
