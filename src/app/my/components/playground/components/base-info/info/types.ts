@@ -1,4 +1,5 @@
 export interface InfoProps {
   username: string;
-  intro: string;
+  bio: string;
+  onSave: ({ username, bio }: { username: string; bio: string }) => void;
 }

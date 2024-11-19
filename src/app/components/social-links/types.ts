@@ -4,6 +4,7 @@ export interface SocialLinksProps {
   links: SocialPlatform[];
 
   mode?: 'edit' | 'view';
+  align?: 'center' | 'left' | 'right';
   className?: string;
   onClick?: (link?: SocialLinkItem) => void;
 }

@@ -6,8 +6,8 @@ import BaseInfoMain from './main';
 
 export default function BaseInfo() {
   return (
-    <section className={style['base-info']}>
-      <BaseInfoMain />
+    <section className={style.wrapper}>
+      <BaseInfoMain className='flex-1' />
 
       <BaseInfoEdit />
     </section>

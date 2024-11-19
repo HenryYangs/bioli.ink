@@ -15,6 +15,8 @@ import style from './page-view.module.scss';
 import { PageViewProps } from './types';
 
 export default function PageView({
+  username,
+  bio,
   className = ''
 }: PageViewProps) {
   return (
@@ -29,15 +31,17 @@ export default function PageView({
             <Avatar isBordered className='w-[100px] h-[100px]' />
           </div>
 
-          <p className={style.username}>username</p>
+          <p className={style.username}>{username}</p>
 
-          <div className={style.bio}>
-            nomad | biohacker | bucket list junkie
+          {/* TODO 处理换行，最大宽度 */}
+          <div className={style.bio}>{bio}
+            {/* nomad | biohacker | bucket list junkie
             travel inspo + staying healthy on the road
             EXPAT &gt; ENTREPRENEUR INTERVIEWS
-            🌎 7 continents + 60 countries 🗺
+            🌎 7 continents + 60 countries 🗺 */}
           </div>
 
+          {/* TODO 处理bio 有内容之后的居中问题 */}
           <SocialLinks
             className={style['social-links']}
             links={[

@@ -8,13 +8,13 @@ import event from '@/app/utils/event';
 import style from './info.module.scss';
 import { InfoProps } from './types';
 
-export default function Info({ username, intro }: InfoProps) {
+export default function Info({ username, bio, onSave }: InfoProps) {
   const [name, setName] = useState(username);
-  const [introduction, setIntroduction] = useState(intro);
+  const [introduction, setIntroduction] = useState(bio);
 
-  const onSave = () => {
-    event.emit(EVENTS.USERNAME_UPDATE, name);
-    event.emit(EVENTS.INTRO_UPDATE, introduction);
+  const onSaveHandler = () => {
+    onSave({ username: name, bio: introduction });
+
     event.emit(EVENTS.HIDE_MODAL);
   };
 
@@ -38,7 +38,7 @@ export default function Info({ username, intro }: InfoProps) {
         onValueChange={setIntroduction}
       />
 
-      <Button radius='full' className='btn-main-color' onPress={onSave}>保存</Button>
+      <Button radius='full' className='btn-main-color' onPress={onSaveHandler}>保存</Button>
     </div>
   );
 }

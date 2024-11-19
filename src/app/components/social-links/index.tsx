@@ -16,6 +16,7 @@ export default function SocialLinks({
   links,
   mode = 'view',
   className = '',
+  align = 'center',
   onClick,
 }: SocialLinksProps) {
   const isEdit = mode === 'edit';
@@ -30,7 +31,12 @@ export default function SocialLinks({
   }, [links]);
 
   return (
-    <div className={cls(style.wrapper, className)}>
+    <div
+      className={cls(style.wrapper, className)}
+      style={{
+        justifyContent: align,
+      }}
+    >
       {
         renderList.map(link => (
           <Link

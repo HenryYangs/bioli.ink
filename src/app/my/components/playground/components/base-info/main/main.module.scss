@@ -1,9 +1,9 @@
-.main {
-  @apply flex justify-start items-center gap-4;
+.wrapper {
+  @apply flex justify-start items-start gap-4;
 }
 
 .content {
-  @apply flex flex-col;
+  @apply flex flex-col gap-2;
 }
 
 .avatar {
@@ -23,7 +23,7 @@
 }
 
 .username {
-  @apply text-xl font-bold cursor-pointer;
+  @apply text-xl font-bold cursor-pointer break-all;
 
   &:hover {
     @apply underline;
@@ -31,7 +31,7 @@
 }
 
 .description {
-  @apply text-sm font-light text-[var(--text-color)] cursor-pointer;
+  @apply text-sm font-light text-[var(--text-color)] cursor-pointer break-all;
 
   &:hover {
     @apply underline;
