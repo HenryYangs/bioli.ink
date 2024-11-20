@@ -6,7 +6,7 @@ import { RootState } from '@/app/my/redux';
 import style from './preview.module.scss';
 
 export default function Preview() {
-  const { username, bio } = useSelector((root: RootState) => root.my);
+  const { avatar, username, bio } = useSelector((root: RootState) => root.my);
 
   return (
     <section className={style['preview-wrapper']}>
@@ -16,6 +16,7 @@ export default function Preview() {
         >
           <PageView
             className={style['page-view']}
+            avatar={avatar}
             username={username}
             bio={bio}
           />

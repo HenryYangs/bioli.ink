@@ -8,7 +8,7 @@ import SocialLinks from '@/app/components/social-links';
 import { EVENTS } from '@/app/constant/events';
 import { useEventListener } from '@/app/hooks/use-event-listener';
 import { RootState } from '@/app/my/redux';
-import { updateBio, updateUsername } from '@/app/my/redux/my';
+import { updateAvatar, updateBio, updateUsername } from '@/app/my/redux/my';
 import event from '@/app/utils/event';
 import { cls } from '@/app/utils/string';
 
@@ -19,14 +19,17 @@ import style from './main.module.scss';
 
 export default function BaseInfoMain({ className = '' }: { className?: string }) {
   const dispatch = useDispatch();
-  const { username, bio } = useSelector((root: RootState) => root.my);
+  const { avatar, username, bio } = useSelector((root: RootState) => root.my);
   const latestUsername = useLatest(username);
   const latestBio = useLatest(bio);
 
   const onAvatarClick = () => {
     event.emit(EVENTS.SHOW_MODAL, {
       title: '个人头像',
-      body: <PersonalAvatar />,
+      body: <PersonalAvatar onSuccess={(url) => {
+        dispatch(updateAvatar(url));
+        event.emit(EVENTS.HIDE_MODAL);
+      }} />,
       footer: false
     });
   };
@@ -77,7 +80,7 @@ export default function BaseInfoMain({ className = '' }: { className?: string })
           isBordered
           radius='full'
           size='lg'
-          src=''
+          src={avatar}
           onClick={onAvatarClick}
           className={style.avatar}
         />

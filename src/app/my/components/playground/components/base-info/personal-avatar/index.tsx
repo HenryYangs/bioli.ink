@@ -11,6 +11,7 @@ import ReactCrop, {
 
 import DragAndDrop from '@/app/components/drag-drop';
 import { EVENTS } from '@/app/constant/events';
+import { useUploadBase64 } from '@/app/hooks/api/use-upload-base64';
 import { useDebounceEffect } from '@/app/hooks/use-debounce-effect';
 import { useEventListener } from '@/app/hooks/use-event-listener';
 import { FileType } from '@/app/types/my';
@@ -22,7 +23,7 @@ import style from './personal-avatar.module.scss';
 import { AvatarStatus } from './types';
 import { canvasPreview, centerAspectCrop, getRealCroppedImage } from './utils';
 
-export default function PersonalAvatar() {
+export default function PersonalAvatar({ onSuccess }: { onSuccess: (url: string) => void }) {
   const [status, setStatus] = useState<AvatarStatus>(AvatarStatus.SELECT);
   const [avatar, setAvatar] = useState('');
   const [crop, setCrop] = useState<Crop>();
@@ -60,10 +61,14 @@ export default function PersonalAvatar() {
     setStatus(AvatarStatus.SELECT);
   };
 
+  const { run: runUploadAvatar, loading } = useUploadBase64({ onSuccess });
+
   const onUploadPress = async () => {
     if (status === AvatarStatus.UPLOAD) {
-      // TODO 上传七牛云
-      console.log('finalCroppedAvatar', finalCroppedAvatar.current);
+      runUploadAvatar({
+        type: 'avatar',
+        base64: finalCroppedAvatar.current,
+      });
     } else if (status === AvatarStatus.CROP) {
       getRealCroppedImage({
         image: imgRef.current,
@@ -114,6 +119,7 @@ export default function PersonalAvatar() {
             variant='ghost'
             className='w-[36px]'
             onPress={onReset}
+            disabled={loading}
           >重置</Button>
 
           <ReactCrop
@@ -154,12 +160,16 @@ export default function PersonalAvatar() {
               radius='full'
               className={cls(style['btn-cancel'], 'btn-main-color-other')}
               onPress={onReSelect}
+              isLoading={loading}
+              disabled={loading}
             >重新选择</Button>
 
             <Button
               radius='full'
               className='btn-main-color'
               onPress={onUploadPress}
+              isLoading={loading}
+              disabled={loading}
             >{BTN_CONFIRM_TEXT[status]}</Button>
           </div>
         </>

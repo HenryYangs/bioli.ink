@@ -10,6 +10,10 @@
   @apply flex flex-col items-center;
 }
 
+.avatar {
+  @apply w-[100px] h-[100px];
+}
+
 .username {
   @apply text-[16px] font-semibold mt-[15px] text-center;
 }
