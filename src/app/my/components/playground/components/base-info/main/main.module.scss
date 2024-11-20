@@ -7,19 +7,11 @@
 }
 
 .avatar {
-  @apply w-[64px] h-[64px] cursor-pointer transition-all;
+  @apply w-[64px] h-[64px] cursor-pointer;
 
   &:hover {
     @apply shadow-xl;
   }
-}
-
-.icon-delete {
-  @apply text-[12px] leading-[1];
-}
-
-.avatar-delete {
-  @apply p-[4px];
 }
 
 .username {

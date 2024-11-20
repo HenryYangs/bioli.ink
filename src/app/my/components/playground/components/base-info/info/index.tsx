@@ -25,6 +25,7 @@ export default function Info({ username, bio, onSave }: InfoProps) {
         variant='faded'
         value={name}
         onValueChange={setName}
+        maxLength={30}
       />
 
       <Textarea
@@ -36,6 +37,7 @@ export default function Info({ username, bio, onSave }: InfoProps) {
         }}
         value={introduction}
         onValueChange={setIntroduction}
+        maxLength={99999} // 理论上不去限制长度，但为了安全着想，还是先给一个长度
       />
 
       <Button radius='full' className='btn-main-color' onPress={onSaveHandler}>保存</Button>

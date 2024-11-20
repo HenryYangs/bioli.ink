@@ -1,0 +1,11 @@
+.icon-delete {
+  @apply text-[12px] cursor-pointer;
+}
+
+.delete-content {
+  @apply p-[16px];
+}
+
+.btn-group {
+  @apply flex justify-between items-center gap-2 mt-[10px];
+}

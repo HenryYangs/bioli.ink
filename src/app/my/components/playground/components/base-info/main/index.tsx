@@ -3,6 +3,7 @@ import { Badge } from '@nextui-org/badge';
 import { useLatest } from 'ahooks';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Delete from '@/app/components/delete';
 import SocialLinks from '@/app/components/social-links';
 import { EVENTS } from '@/app/constant/events';
 import { useEventListener } from '@/app/hooks/use-event-listener';
@@ -66,12 +67,20 @@ export default function BaseInfoMain({ className = '' }: { className?: string })
     <div className={cls(style.wrapper, className)}>
       <Badge
         isOneChar
-        content={<i className={cls('iconfont-my', 'icon-my-delete', style['icon-delete'])}></i>}
+        content={
+          <Delete title='确定删除头像？' />
+        }
         color='danger'
         shape='circle'
-        className={style['avatar-delete']}
       >
-        <Avatar src='https://i.pravatar.cc/150?u=a04258114e29026302d' onClick={onAvatarClick} className={style.avatar} />
+        <Avatar
+          isBordered
+          radius='full'
+          size='lg'
+          src=''
+          onClick={onAvatarClick}
+          className={style.avatar}
+        />
       </Badge>
 
       <div className={style.content}>
