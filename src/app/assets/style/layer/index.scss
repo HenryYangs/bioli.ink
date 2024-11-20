@@ -1,5 +1,7 @@
 @layer components {
   .hover-bg {
+    @apply cursor-pointer;
+
     &:hover {
       @apply bg-black/5;
     }

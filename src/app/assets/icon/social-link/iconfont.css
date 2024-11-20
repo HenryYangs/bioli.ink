@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont-social-links"; /* Project id 4745860 */
-  src: url('iconfont.woff2?t=1731772785928') format('woff2'),
-       url('iconfont.woff?t=1731772785928') format('woff'),
-       url('iconfont.ttf?t=1731772785928') format('truetype');
+  src: url('iconfont.woff2?t=1732097808896') format('woff2'),
+       url('iconfont.woff?t=1732097808896') format('woff'),
+       url('iconfont.ttf?t=1732097808896') format('truetype');
 }
 
 .iconfont-social-links {
@@ -13,7 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-social-link-computer:before {
+.icon-social-link-baobaoshu:before {
+  content: "\e7a7";
+}
+
+.icon-social-link-website:before {
   content: "\e762";
 }
 
@@ -215,10 +219,6 @@
 
 .icon-social-link-xueqiu:before {
   content: "\e7bd";
-}
-
-.icon-social-link-baobaoshu:before {
-  content: "\e85e";
 }
 
 .icon-social-link-apple-music:before {

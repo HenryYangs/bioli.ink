@@ -3,17 +3,17 @@
 import { Switch } from '@nextui-org/switch';
 import { useState } from 'react';
 
+import { SocialLink } from '@/app/types/my';
 import { cls } from '@/app/utils/string';
 
 import style from './social-link-item.module.scss';
-import { SocialLinkItemProps } from './types';
 
 export default function SocialLinkItem({
   id,
   icon,
   name,
   isDraft
-}: SocialLinkItemProps) {
+}: SocialLink) {
   const [isSelected, setIsSelected] = useState(true);
   const onItemClick = () => {
 

@@ -17,34 +17,31 @@ import React, { useState } from 'react';
 
 import { EVENTS } from '@/app/constant/events';
 import { useEventListener } from '@/app/hooks/use-event-listener';
+import event from '@/app/utils/event';
 import { cls } from '@/app/utils/string';
 
 import style from './modal.module.scss';
-import { BackOptions, ModalOperateProps } from './types';
-
-const DEFAULT_BACK_OPTIONS = {
-  show: false,
-};
+import { ModalOperateProps } from './types';
 
 export default function Modal() {
   const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure();
   const [title, setTitle] = useState('');
   const [modalBody, setModalBody] = useState<React.ReactNode | React.ReactNode[]>(null);
   const [modalFooter, setModalFooter] = useState<React.ReactNode | React.ReactNode[] | boolean>(null);
-  const [backOpts, setBackOpts] = useState<BackOptions>(DEFAULT_BACK_OPTIONS);
+  const [backToEvent, setBackToEvent] = useState<EVENTS>();
 
   const showModal = (props: ModalOperateProps = {}) => {
     const {
       title = '',
       body = null,
       footer = null,
-      backOptions = DEFAULT_BACK_OPTIONS,
+      backTo,
     } = props;
-
+    console.log('backTo', backTo)
     setTitle(title);
     setModalBody(body);
     setModalFooter(footer);
-    setBackOpts(backOptions);
+    setBackToEvent(backTo);
 
     onOpen();
   }
@@ -64,7 +61,9 @@ export default function Modal() {
       onClose={onOpenChange}
       className={style.wrapper}
       classNames={{
-        closeButton: 'hidden'
+        closeButton: 'hidden',
+        base: 'max-h-[600px]',
+        body: 'overflow-hidden'
       }}
     >
       <ModalContent>
@@ -73,8 +72,8 @@ export default function Modal() {
             <ModalHeader className='py-6 justify-center'>
               <div className={style['title-wrapper']}>
                 {
-                  backOpts.show ? (
-                    <i className={cls('iconfont-my', 'icon-my-arrow', style['icon-action'])}></i>
+                  backToEvent ? (
+                    <i className={cls('iconfont-my', 'icon-my-arrow', style['icon-action'])} onClick={() => { event.emit(backToEvent) }}></i>
                   ) : null
                 }
 

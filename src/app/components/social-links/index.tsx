@@ -6,7 +6,7 @@ import { Link } from "@nextui-org/link";
 import { useEffect, useState } from 'react';
 
 import { DEFAULT_SOCIAL_LINKS, LIST_SOCIAL_LINKS } from '@/app/constant/list/social-links';
-import { SocialLinkItem } from '@/app/types/my';
+import { SocialLink } from '@/app/types/my';
 import { cls } from '@/app/utils/string';
 
 import style from './social-links.module.scss';
@@ -20,7 +20,7 @@ export default function SocialLinks({
   onClick,
 }: SocialLinksProps) {
   const isEdit = mode === 'edit';
-  const [renderList, setRenderList] = useState<SocialLinkItem[]>([]);
+  const [renderList, setRenderList] = useState<SocialLink[]>([]);
 
   useEffect(() => {
     if (!links.length && isEdit) {

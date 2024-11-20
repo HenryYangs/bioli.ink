@@ -30,7 +30,7 @@ export enum SocialPlatform {
   FEI_SHU = 'feishu',
   GITHUB = 'github',
   GITLAB = 'gitlab',
-  GOOD_READS = 'googreads',
+  GOOD_READS = 'goodreads',
   GOOGLE_PLAY_STORE = 'google-play-store',
   GOOGLE_PODCAST = 'google-podcast',
   HU_PU = 'hupu',
@@ -46,7 +46,7 @@ export enum SocialPlatform {
   LOFTER = 'lofter',
   MA_FENG_WO = 'mafengwo',
   MAI_MAI = 'maimai',
-  MASTONDON = 'mastondon',
+  MASTONDON = 'mastodon',
   MEDIUM = 'medium',
   MEET_UP = 'meetup',
   MO_MO = 'momo',
@@ -93,8 +93,9 @@ export enum SocialPlatform {
 
 type SocialLinkValues = typeof SOCIAL_LINKS_TEXT[keyof typeof SOCIAL_LINKS_TEXT];
 
-export interface SocialLinkItem {
+export interface SocialLink {
   id: SocialPlatform;
   name: SocialLinkValues;
   icon: string;
+  isDraft?: boolean;
 }

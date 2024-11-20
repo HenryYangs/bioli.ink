@@ -1,4 +1,4 @@
-import { SocialLinkItem, SocialPlatform } from '@/app/types/my';
+import { SocialLink, SocialPlatform } from '@/app/types/my';
 
 export const SOCIAL_LINKS_TEXT = {
   [SocialPlatform.ALI_PAY]: '支付宝',
@@ -49,7 +49,7 @@ export const SOCIAL_LINKS_TEXT = {
   [SocialPlatform.MASTONDON]: 'Mastondon',
   [SocialPlatform.MEDIUM]: 'Medium',
   [SocialPlatform.MEET_UP]: 'Meetup',
-  [SocialPlatform.MO_MO]: '沫沫',
+  [SocialPlatform.MO_MO]: '陌陌',
   [SocialPlatform.ONLY_FANS]: 'Onlyfans',
   [SocialPlatform.PATREON]: 'Patreon',
   [SocialPlatform.PDD]: '拼多多',
@@ -87,11 +87,11 @@ export const SOCIAL_LINKS_TEXT = {
   [SocialPlatform.XIAN_YU]: '闲鱼',
   [SocialPlatform.XIAO_HONG_SHU]: '小红书',
   [SocialPlatform.XUE_QIU]: '雪球',
-  [SocialPlatform.YOUTUBE]: 'Youtube',
+  [SocialPlatform.YOUTUBE]: 'YouTube',
   [SocialPlatform.ZHI_HU]: '知乎',
 } as const;
 
-export const LIST_SOCIAL_LINKS: SocialLinkItem[] = [
+export const LIST_SOCIAL_LINKS: SocialLink[] = [
   {
     id: SocialPlatform.ALI_PAY,
     name: SOCIAL_LINKS_TEXT[SocialPlatform.ALI_PAY],

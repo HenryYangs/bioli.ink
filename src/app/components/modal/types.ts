@@ -1,6 +1,4 @@
-export interface BackOptions {
-  show?: boolean;
-}
+import { EVENTS } from '@/app/constant/events';
 
 export interface ModalOperateProps {
   title?: string;
@@ -8,5 +6,5 @@ export interface ModalOperateProps {
   footer?: React.ReactNode | React.ReactNode[];
   confirmText?: string;
   cancelText?: string;
-  backOptions?: BackOptions;
+  backTo?: EVENTS;
 }

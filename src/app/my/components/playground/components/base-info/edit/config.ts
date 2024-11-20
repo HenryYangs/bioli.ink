@@ -8,7 +8,7 @@ export const BASE_INFO_EDIT: BaseInfoEditTrigger[] = [
     title: '编辑头像',
     icon: 'image',
     action: () => {
-      event.emit(EVENTS.AVATAR_CLICK);
+      event.emit(EVENTS.SHOW_MODAL_AVATAR);
     },
   },
   {
@@ -16,12 +16,15 @@ export const BASE_INFO_EDIT: BaseInfoEditTrigger[] = [
     title: '编辑用户名和简介',
     icon: 'user',
     action: () => {
-      event.emit(EVENTS.USERNAME_INTRO_CLICK);
+      event.emit(EVENTS.SHOW_MODAL_BASE_INFO);
     },
   },
   {
     id: 'social-links',
     title: '编辑社交平台链接',
     icon: 'social',
+    action: () => {
+      event.emit(EVENTS.SHOW_MODAL_SOCIAL_LINK);
+    },
   },
 ];

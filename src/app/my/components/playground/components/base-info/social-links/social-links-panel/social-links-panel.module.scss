@@ -1,11 +1,11 @@
-.my-links {
-  @apply mt-[20px];
+.wrapper {
+  @apply flex flex-col gap-4;
 }
 
-.icon-position {
-  @apply mt-[20px];
+.icon-position-options {
+  @apply mt-[10px];
+}
 
-  &-options {
-    @apply mt-[10px];
-  }
+.empty-tips {
+  @apply text-center text-[12px] text-[var(--text-color)];
 }

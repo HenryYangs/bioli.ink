@@ -1,15 +1,19 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { SocialLink } from '@/app/types/my';
+
 interface MyStore {
   avatar: string;
   username: string;
   bio: string;
+  socialLinks: SocialLink[];
 }
 
 const initialState: MyStore = {
   avatar: '',
   username: '',
   bio: '',
+  socialLinks: [],
 }
 
 export const mySlice = createSlice({
@@ -25,6 +29,9 @@ export const mySlice = createSlice({
     updateBio: (state, action: PayloadAction<string>) => {
       state.bio = action.payload;
     },
+    updateSocialLinks: (state, action: PayloadAction<any[]>) => {
+      state.socialLinks = action.payload;
+    }
   },
 });
 
@@ -33,4 +40,5 @@ export const {
   updateAvatar,
   updateUsername,
   updateBio,
+  updateSocialLinks,
 } = mySlice.actions;
