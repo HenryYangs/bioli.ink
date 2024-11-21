@@ -37,7 +37,7 @@ export default function Modal() {
       footer = null,
       backTo,
     } = props;
-    console.log('backTo', backTo)
+
     setTitle(title);
     setModalBody(body);
     setModalFooter(footer);

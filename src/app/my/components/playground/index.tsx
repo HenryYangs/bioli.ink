@@ -1,8 +1,8 @@
 'use client'
 
+import { ReactSortable } from '@miestasmia/react-sortablejs';
 import { useState } from 'react';
 import { Provider } from 'react-redux';
-import { ReactSortable } from 'react-sortablejs';
 
 import { store } from '../../redux';
 import AddModule from './components/add-module';

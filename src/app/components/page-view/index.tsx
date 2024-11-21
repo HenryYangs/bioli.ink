@@ -5,7 +5,6 @@
  */
 import { Avatar } from '@nextui-org/avatar';
 
-import { SocialPlatform } from '@/app/types/my';
 import { cls } from '@/app/utils/string';
 
 import FooterLogo from '../footer-logo';
@@ -18,6 +17,7 @@ export default function PageView({
   avatar,
   username,
   bio,
+  socialLinks,
   className = ''
 }: PageViewProps) {
   return (
@@ -45,10 +45,7 @@ export default function PageView({
 
           <SocialLinks
             className={style['social-links']}
-            links={[
-              SocialPlatform.ALI_PAY, SocialPlatform.ALI_WANG_WANG, SocialPlatform.AMAZON,
-              SocialPlatform.APPLE_APP_STORE, SocialPlatform.APPLE_MUSIC, SocialPlatform.APPLE_PODCASTS, SocialPlatform.ART_STATION, SocialPlatform.BAI_HE, SocialPlatform.BANDCAMP, SocialPlatform.BAO_BAO_SHU, SocialPlatform.BEHANCE, SocialPlatform.TANG_DOU, SocialPlatform.DING_TALK
-            ]}
+            links={socialLinks}
           />
         </section>
 

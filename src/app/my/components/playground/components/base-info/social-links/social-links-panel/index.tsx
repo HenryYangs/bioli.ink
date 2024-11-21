@@ -1,6 +1,6 @@
+import { ReactSortable } from '@miestasmia/react-sortablejs';
 import { Button } from '@nextui-org/button';
 import { Radio, RadioGroup } from "@nextui-org/radio";
-import { ReactSortable } from 'react-sortablejs';
 
 import { EVENTS } from '@/app/constant/events';
 import event from '@/app/utils/event';

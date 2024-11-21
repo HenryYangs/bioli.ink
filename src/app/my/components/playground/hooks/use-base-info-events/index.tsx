@@ -11,6 +11,7 @@ import event from '@/app/utils/event';
 import Info from '../../components/base-info/info';
 import PersonalAvatar from '../../components/base-info/personal-avatar';
 import AddSocialLink from '../../components/base-info/social-links/add-social-link';
+import SocialLinkInput from '../../components/base-info/social-links/social-link-input';
 import SocialLinksPanel from '../../components/base-info/social-links/social-links-panel';
 
 /**
@@ -22,14 +23,21 @@ export const useBaseInfoEvents = () => {
   const { username, bio, socialLinks } = useSelector((root: RootState) => root.my);
   const latestUsername = useLatest(username);
   const latestBio = useLatest(bio);
+  const latestSocialLinks = useLatest(socialLinks);
 
   const onBaseInfoSave = ({ username, bio }: { username: string; bio: string }) => {
     dispatch(updateUsername(username));
     dispatch(updateBio(bio));
-  }
+  };
 
   const onSocialLinkSorted = (newList: SocialLink[]) => {
     dispatch(updateSocialLinks(newList));
+  };
+
+  const onAddSocialLink = (item: SocialLink) => {
+    const copy = [...latestSocialLinks.current];
+
+    dispatch(updateSocialLinks(copy.concat(item)));
   }
 
   const showModalAvatar = () => {
@@ -58,7 +66,7 @@ export const useBaseInfoEvents = () => {
   const showModalSocialLink = () => {
     event.emit(EVENTS.SHOW_MODAL, {
       title: '社交平台链接',
-      body: <SocialLinksPanel list={socialLinks} setList={onSocialLinkSorted} />,
+      body: <SocialLinksPanel list={latestSocialLinks.current} setList={onSocialLinkSorted} />,
       footer: false,
     });
   };
@@ -75,7 +83,19 @@ export const useBaseInfoEvents = () => {
   const showModalAddSocialLinkIcon = (item: SocialLink) => {
     event.emit(EVENTS.SHOW_MODAL, {
       title: `添加${item.name}图标`,
-      body: <>112233</>,
+      body: (
+        <SocialLinkInput
+          placeholder='' // TODO
+          example='' // TODO
+          onAddSuccess={(link) => {
+            onAddSocialLink({
+              ...item,
+              link
+            });
+            event.emit(EVENTS.HIDE_MODAL);
+          }}
+        />
+      ),
       footer: false,
       backTo: EVENTS.SHOW_MODAL_ADD_SOCIAL_LINK,
     });

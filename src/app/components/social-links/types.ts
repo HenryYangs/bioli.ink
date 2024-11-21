@@ -1,7 +1,7 @@
-import { SocialLink, SocialPlatform } from '@/app/types/my';
+import { SocialLink } from '@/app/types/my';
 
 export interface SocialLinksProps {
-  links: SocialPlatform[];
+  links: SocialLink[];
 
   mode?: 'edit' | 'view';
   align?: 'center' | 'left' | 'right';

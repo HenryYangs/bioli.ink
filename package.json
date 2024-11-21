@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@miestasmia/react-sortablejs": "^6.1.5",
     "@nextui-org/accordion": "^2.0.40",
     "@nextui-org/avatar": "^2.0.33",
     "@nextui-org/badge": "^2.0.32",
@@ -35,7 +36,6 @@
     "react-dom": "19.0.0-rc-02c0e824-20241028",
     "react-image-crop": "^11.0.7",
     "react-redux": "^9.1.2",
-    "react-sortablejs": "^6.1.4",
     "sortablejs": "^1.15.3"
   },
   "devDependencies": {

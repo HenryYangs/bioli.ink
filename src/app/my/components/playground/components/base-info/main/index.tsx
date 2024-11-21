@@ -1,5 +1,4 @@
 import { Avatar } from '@nextui-org/avatar';
-import { Badge } from '@nextui-org/badge';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Delete from '@/app/components/delete';
@@ -14,7 +13,7 @@ import style from './main.module.scss';
 
 export default function BaseInfoMain({ className = '' }: { className?: string }) {
   const dispatch = useDispatch();
-  const { avatar, username, bio } = useSelector((root: RootState) => root.my);
+  const { avatar, username, bio, socialLinks } = useSelector((root: RootState) => root.my);
 
   const onDeleteAvatar = () => {
     dispatch(updateAvatar(''));
@@ -22,14 +21,7 @@ export default function BaseInfoMain({ className = '' }: { className?: string })
 
   return (
     <div className={cls(style.wrapper, className)}>
-      <Badge
-        isOneChar
-        content={
-          <Delete title='确定删除头像？' onConfirm={onDeleteAvatar} />
-        }
-        color='danger'
-        shape='circle'
-      >
+      <Delete title='确定删除头像？' onConfirm={onDeleteAvatar}>
         <Avatar
           isBordered
           radius='full'
@@ -38,7 +30,7 @@ export default function BaseInfoMain({ className = '' }: { className?: string })
           onClick={() => { event.emit(EVENTS.SHOW_MODAL_AVATAR) }}
           className={style.avatar}
         />
-      </Badge>
+      </Delete>
 
       <div className={style.content}>
         <p className={style.username} onClick={() => { event.emit(EVENTS.SHOW_MODAL_BASE_INFO) }}>@{username}</p>
@@ -50,7 +42,7 @@ export default function BaseInfoMain({ className = '' }: { className?: string })
           mode='edit'
           align='left'
           className={style['social-links']}
-          links={[]}
+          links={socialLinks}
           onClick={() => { event.emit(EVENTS.SHOW_MODAL_SOCIAL_LINK) }}
         />
       </div>

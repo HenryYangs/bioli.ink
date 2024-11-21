@@ -1,0 +1,7 @@
+.wrapper {
+  @apply flex flex-col gap-4;
+}
+
+.example {
+  @apply text-sm text-[var(--text-color)];
+}

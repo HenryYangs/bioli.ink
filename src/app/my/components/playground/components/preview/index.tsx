@@ -6,7 +6,7 @@ import { RootState } from '@/app/my/redux';
 import style from './preview.module.scss';
 
 export default function Preview() {
-  const { avatar, username, bio } = useSelector((root: RootState) => root.my);
+  const { avatar, username, bio, socialLinks } = useSelector((root: RootState) => root.my);
 
   return (
     <section className={style['preview-wrapper']}>
@@ -19,6 +19,7 @@ export default function Preview() {
             avatar={avatar}
             username={username}
             bio={bio}
+            socialLinks={socialLinks}
           />
         </div>
       </div>
