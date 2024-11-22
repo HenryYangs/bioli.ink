@@ -57,7 +57,7 @@ export default function SocialLinks({
               <Link
                 className={style['social-link']}
                 color='foreground'
-                onPress={() => onClick?.(link)}
+                onPress={() => onClick?.({ link, index })}
               >
                 <i className={cls('iconfont-social-links', `icon-social-link-${link.icon}`, style['social-link_icon'])}></i>
 
@@ -83,7 +83,7 @@ export default function SocialLinks({
               style={{
                 ...(link.description ? { borderColor: 'var(--main-text-color)' } : {})
               }}
-              onPress={() => onClick?.(link)}
+              onPress={() => onClick?.({ link, index })}
             >
               <i className={cls('iconfont-social-links', `icon-social-link-${link.icon}`, style['social-link_icon'])}></i>
 

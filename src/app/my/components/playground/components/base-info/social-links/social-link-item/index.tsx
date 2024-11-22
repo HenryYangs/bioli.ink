@@ -11,6 +11,7 @@ import style from './social-link-item.module.scss';
 import { SocialLinkItemProps } from './types';
 
 export default function SocialLinkItem({
+  index,
   allowSort,
   ...linkItem
 }: SocialLinkItemProps) {
@@ -23,7 +24,11 @@ export default function SocialLinkItem({
   } = linkItem;
   const [isSelected, setIsSelected] = useState(true);
   const onItemClick = () => {
-    event.emit(EVENTS.SHOW_MODAL_ADD_SOCIAL_LINK_ICON, linkItem, { backTo: EVENTS.SHOW_MODAL_SOCIAL_LINK });
+    event.emit(
+      EVENTS.SHOW_MODAL_ADD_SOCIAL_LINK_ICON,
+      linkItem,
+      { backTo: EVENTS.SHOW_MODAL_SOCIAL_LINK, index, status: 'edit' }
+    );
   };
 
   return (

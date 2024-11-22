@@ -28,10 +28,11 @@ export default function SocialLinksPanel({ list, setList }: SocialLinksPanelProp
               className={style['social-links-wrapper']}
             >
               {
-                list.map(item => (
+                list.map((item, index) => (
                   <SocialLinkItem
                     key={item.id}
                     {...item}
+                    index={index}
                     allowSort={list.length > 1}
                   />
                 ))

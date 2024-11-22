@@ -6,5 +6,5 @@ export interface SocialLinksProps {
   mode?: 'edit' | 'view';
   align?: 'center' | 'left' | 'right';
   className?: string;
-  onClick?: (link?: SocialLink) => void;
+  onClick?: ({ link, index }?: { link?: SocialLink; index?: number }) => void;
 }

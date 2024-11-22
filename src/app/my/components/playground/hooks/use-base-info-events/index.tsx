@@ -38,6 +38,14 @@ export const useBaseInfoEvents = () => {
     const copy = [...latestSocialLinks.current];
 
     dispatch(updateSocialLinks(copy.concat(item)));
+  };
+
+  // TODO 使用唯一 key 来替换 index
+  const onEditSocialLink = (index: number, item: SocialLink) => {
+    const copy = [...latestSocialLinks.current];
+
+    copy.splice(index, 1, item);
+    dispatch(updateSocialLinks(copy));
   }
 
   const showModalAvatar = () => {
@@ -80,17 +88,32 @@ export const useBaseInfoEvents = () => {
     });
   };
 
-  const showModalAddSocialLinkIcon = (item: SocialLink, options?: { backTo?: EVENTS }) => {
+  const showModalAddSocialLinkIcon = (
+    item: SocialLink,
+    options?: {
+      backTo?: EVENTS,
+      status?: 'create' | 'edit',
+      index?: number,
+    },
+  ) => {
     event.emit(EVENTS.SHOW_MODAL, {
-      title: `添加${item.name}图标`,
+      title: `${options?.status === 'edit' ? '编辑' : '添加'}${item.name}图标`,
       body: (
         <SocialLinkInput
           placeholder='' // TODO
           example='' // TODO
           defaultLink={item.link}
           defaultDescription={item.description}
-          onAddSuccess={(info) => {
+          status={options?.status}
+          onAdd={(info) => {
             onAddSocialLink({
+              ...item,
+              ...info
+            });
+            event.emit(EVENTS.HIDE_MODAL);
+          }}
+          onEdit={(info) => {
+            onEditSocialLink(options?.index || -1, {
               ...item,
               ...info
             });

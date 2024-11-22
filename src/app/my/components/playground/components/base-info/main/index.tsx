@@ -20,10 +20,14 @@ export default function BaseInfoMain({ className = '' }: { className?: string })
     dispatch(updateAvatar(''));
   };
 
-  const onSocialLinkClick = (link?: SocialLink) => {
+  const onSocialLinkClick = (props: { link?: SocialLink; index?: number} = {}) => {
+    const { link, index } = props;
+
     if (socialLinks.length && Boolean(link)) {
       event.emit(EVENTS.SHOW_MODAL_ADD_SOCIAL_LINK_ICON, link, {
         backTo: EVENTS.SHOW_MODAL_SOCIAL_LINK,
+        index,
+        status: 'edit',
       });
       return;
     }

@@ -10,8 +10,11 @@ export default function SocialLinkInput({
   defaultDescription = '',
   placeholder,
   example,
-  onAddSuccess,
+  status,
+  onAdd,
+  onEdit
 }: SocialLinkInputProps) {
+  const isEdit = status === 'edit';
   const [link, setLink] = useState(defaultLink);
   const [description, setDescription] = useState(defaultDescription);
   const [isInvalid, setIsInvalid] = useState(false);
@@ -21,9 +24,12 @@ export default function SocialLinkInput({
     setIsInvalid(false);
   }
 
-  const onAdd = () => {
+  const onActionHandler = () => {
     if (link) {
-      onAddSuccess({ link, description });
+      const action = isEdit ? onEdit : onAdd;
+
+      action({ link, description });
+
       return;
     }
 
@@ -51,7 +57,10 @@ export default function SocialLinkInput({
         onValueChange={setDescription}
       />
       
-      <Button className='btn-main-color' onPress={onAdd}>添加</Button>
+      <Button
+        className='btn-main-color'
+        onPress={onActionHandler}
+      >{isEdit ? '编辑' : '添加'}</Button>
     </div>
   );
 }
