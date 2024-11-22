@@ -32,16 +32,15 @@ export default function SocialLinks({
     if (!links.length && isEdit) {
       setRenderList(DEFAULT_SOCIAL_LINKS);
     } else {
-      const curLinksId = links.map(link => link.id);
-
-      setRenderList(LIST_SOCIAL_LINKS.filter(link => curLinksId.includes(link.id)));
+      setRenderList(links);
     }
   }, [links]);
 
-  const onDeleteSocialLink = (item: SocialLink) => {
+  const onDeleteSocialLink = (index: number) => {
     const copy = [...socialLinks];
 
-    dispatch(updateSocialLinks(copy.filter(c => c.id !== item.id)));
+    copy.splice(index, 1);
+    dispatch(updateSocialLinks(copy));
   };
 
   return (
@@ -52,9 +51,9 @@ export default function SocialLinks({
       }}
     >
       {
-        renderList.map(link => (
+        renderList.map((link, index) => (
           isEdit && links.length ? (
-            <Delete key={link.id} title={`确定删除${link.name}？`} onConfirm={() => onDeleteSocialLink(link)}>
+            <Delete key={link.id} title={`确定删除${link.name}？`} onConfirm={() => onDeleteSocialLink(index)}>
               <Link
                 className={style['social-link']}
                 color='foreground'
@@ -74,11 +73,25 @@ export default function SocialLinks({
           ) : (
             <Link
               key={link.id}
-              className={style['social-link']}
-              color='foreground'
+              className={
+                cls(
+                  style['social-link'],
+                  style['view-mode-text'],
+                  link.description ? style['with-desc'] : ''
+                )
+              }
+              style={{
+                ...(link.description ? { borderColor: 'var(--main-text-color)' } : {})
+              }}
               onPress={() => onClick?.(link)}
             >
               <i className={cls('iconfont-social-links', `icon-social-link-${link.icon}`, style['social-link_icon'])}></i>
+
+              {
+                link.description ? (
+                  <span className={style.description}>{link.description}</span>
+                ) : null
+              }
 
               {
                 (isEdit && !links.length) ? (

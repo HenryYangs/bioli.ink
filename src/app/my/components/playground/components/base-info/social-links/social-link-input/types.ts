@@ -1,5 +1,7 @@
 export interface SocialLinkInputProps {
   placeholder: string;
   example: string;
-  onAddSuccess: (link: string) => void;
+  defaultLink?: string;
+  defaultDescription?: string;
+  onAddSuccess: ({ link, description }: { link: string; description: string }) => void;
 }

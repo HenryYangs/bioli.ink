@@ -18,10 +18,22 @@
   @apply relative cursor-pointer;
 
   .social-link_icon {
-    @apply text-[var(--text-color)]  text-[20px];
+    @apply text-[20px];
   }
 }
 
 .add-wrapper {
   @apply flex justify-center items-center w-[24px] h-[24px] text-center rounded-full cursor-pointer;
+}
+
+.description {
+  @apply text-[12px] ml-[5px];
+}
+
+.view-mode-text {
+  @apply text-[var(--main-text-color)];
+}
+
+.with-desc {
+  @apply border-[2px] rounded-full px-[8px] py-[2px];
 }

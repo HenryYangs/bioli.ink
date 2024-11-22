@@ -97,6 +97,7 @@ export interface SocialLink {
   id: SocialPlatform;
   name: SocialLinkValues;
   icon: string;
+  description?: string;
   link?: string;
   isDraft?: boolean;
 }

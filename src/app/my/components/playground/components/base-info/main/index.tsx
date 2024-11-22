@@ -6,6 +6,7 @@ import SocialLinks from '@/app/components/social-links';
 import { EVENTS } from '@/app/constant/events';
 import { RootState } from '@/app/my/redux';
 import { updateAvatar } from '@/app/my/redux/my';
+import { SocialLink } from '@/app/types/my';
 import event from '@/app/utils/event';
 import { cls } from '@/app/utils/string';
 
@@ -17,7 +18,18 @@ export default function BaseInfoMain({ className = '' }: { className?: string })
 
   const onDeleteAvatar = () => {
     dispatch(updateAvatar(''));
-  }
+  };
+
+  const onSocialLinkClick = (link?: SocialLink) => {
+    if (socialLinks.length && Boolean(link)) {
+      event.emit(EVENTS.SHOW_MODAL_ADD_SOCIAL_LINK_ICON, link, {
+        backTo: EVENTS.SHOW_MODAL_SOCIAL_LINK,
+      });
+      return;
+    }
+
+    event.emit(EVENTS.SHOW_MODAL_SOCIAL_LINK);
+  };
 
   return (
     <div className={cls(style.wrapper, className)}>
@@ -43,7 +55,7 @@ export default function BaseInfoMain({ className = '' }: { className?: string })
           align='left'
           className={style['social-links']}
           links={socialLinks}
-          onClick={() => { event.emit(EVENTS.SHOW_MODAL_SOCIAL_LINK) }}
+          onClick={onSocialLinkClick}
         />
       </div>
     </div>

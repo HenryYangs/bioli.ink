@@ -31,10 +31,8 @@ export default function SocialLinksPanel({ list, setList }: SocialLinksPanelProp
                 list.map(item => (
                   <SocialLinkItem
                     key={item.id}
-                    id={item.id}
-                    icon={item.icon}
-                    name={item.name}
-                    isDraft={item.isDraft}
+                    {...item}
+                    allowSort={list.length > 1}
                   />
                 ))
               }

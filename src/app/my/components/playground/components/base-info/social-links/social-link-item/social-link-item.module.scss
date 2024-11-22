@@ -1,11 +1,15 @@
+.social-link-item {
+  @apply flex justify-start items-center px-2 gap-2;
+
+  .icon-platform {
+    @apply text-[20px];
+  }
+}
+
 .social-link-content {
-  @apply flex-1 flex justify-start items-center cursor-pointer p-4 rounded-lg;
+  @apply flex-1 flex justify-start gap-4 items-center cursor-pointer p-4 rounded-lg;
 }
 
 .social-link-name {
   @apply flex-1 font-semibold;
-}
-
-.social-link-item {
-  @apply flex justify-start items-center gap-4 px-2;
 }

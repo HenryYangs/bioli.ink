@@ -80,24 +80,26 @@ export const useBaseInfoEvents = () => {
     });
   };
 
-  const showModalAddSocialLinkIcon = (item: SocialLink) => {
+  const showModalAddSocialLinkIcon = (item: SocialLink, options?: { backTo?: EVENTS }) => {
     event.emit(EVENTS.SHOW_MODAL, {
       title: `添加${item.name}图标`,
       body: (
         <SocialLinkInput
           placeholder='' // TODO
           example='' // TODO
-          onAddSuccess={(link) => {
+          defaultLink={item.link}
+          defaultDescription={item.description}
+          onAddSuccess={(info) => {
             onAddSocialLink({
               ...item,
-              link
+              ...info
             });
             event.emit(EVENTS.HIDE_MODAL);
           }}
         />
       ),
       footer: false,
-      backTo: EVENTS.SHOW_MODAL_ADD_SOCIAL_LINK,
+      backTo: options?.backTo || EVENTS.SHOW_MODAL_ADD_SOCIAL_LINK,
     });
   };
 

@@ -29,7 +29,7 @@ export const mySlice = createSlice({
     updateBio: (state, action: PayloadAction<string>) => {
       state.bio = action.payload;
     },
-    updateSocialLinks: (state, action: PayloadAction<any[]>) => {
+    updateSocialLinks: (state, action: PayloadAction<SocialLink[]>) => {
       state.socialLinks = action.payload;
     }
   },
