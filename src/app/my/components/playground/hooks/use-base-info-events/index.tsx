@@ -30,10 +30,6 @@ export const useBaseInfoEvents = () => {
     dispatch(updateBio(bio));
   };
 
-  const onSocialLinkSorted = (newList: SocialLink[]) => {
-    dispatch(updateSocialLinks(newList));
-  };
-
   const onAddSocialLink = (item: SocialLink) => {
     const copy = [...latestSocialLinks.current];
 
@@ -74,7 +70,21 @@ export const useBaseInfoEvents = () => {
   const showModalSocialLink = () => {
     event.emit(EVENTS.SHOW_MODAL, {
       title: '社交平台链接',
-      body: <SocialLinksPanel list={latestSocialLinks.current} setList={onSocialLinkSorted} />,
+      body: (
+        <SocialLinksPanel
+          list={latestSocialLinks.current}
+          onSortUpdate={(newIndex, oldIndex) => {
+            if (newIndex === undefined || oldIndex === undefined) return;
+
+            const copy = [...latestSocialLinks.current];
+
+            const targetItem = copy.splice(oldIndex, 1);
+
+            copy.splice(newIndex, 0, targetItem[0]);
+            dispatch(updateSocialLinks(copy));
+          }}
+        />
+      ),
       footer: false,
     });
   };

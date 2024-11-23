@@ -9,31 +9,36 @@ import { cls } from '@/app/utils/string';
 import SocialLinkItem from '../social-link-item';
 import style from './social-links-panel.module.scss';
 import { SocialLinksPanelProps } from './types';
+import { useState } from 'react';
 
-export default function SocialLinksPanel({ list, setList }: SocialLinksPanelProps) {
+export default function SocialLinksPanel({ list, onSortUpdate }: SocialLinksPanelProps) {
+  const [ state, setState ] = useState(list);
   return (
     <div className={style.wrapper}>
       <p className='main-title'>通过配置社交平台链接，告诉大家在哪可以找到你~</p>
 
       <main id='mySocialLinks'>
         {
-          list.length ? (
+          state.length ? (
             <ReactSortable
               handle='.icon-drag'
               ghostClass='drag-ghost'
               chosenClass='drag-chosen'
               animation={200}
-              list={list}
-              setList={setList}
+              list={state}
+              setList={setState}
               className={style['social-links-wrapper']}
+              onUpdate={(evt) => {
+                onSortUpdate?.(evt.newIndex, evt.oldIndex);
+              }}
             >
               {
-                list.map((item, index) => (
+                state.map((item, index) => (
                   <SocialLinkItem
                     key={item.id}
                     {...item}
                     index={index}
-                    allowSort={list.length > 1}
+                    allowSort={state.length > 1}
                   />
                 ))
               }
