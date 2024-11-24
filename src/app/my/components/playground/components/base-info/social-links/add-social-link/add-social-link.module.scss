@@ -1,7 +1,10 @@
 .wrapper {
   .icon-action {
-    // @apply rotate-180;
-    transform: rotate(180deg);
+    @apply rotate-180;
+  }
+
+  .icon-platform {
+    @apply text-[20px] text-[var(--main-text-color)];
   }
 }
 
@@ -23,10 +26,6 @@
 
 .social-link-info {
   @apply flex justify-start items-center gap-6;
-}
-
-.icon-platform {
-  @apply text-[24px] text-[var(--main-text-color)];
 }
 
 .social-link-name {

@@ -13,16 +13,17 @@ import { SocialLinkItemProps } from './types';
 export default function SocialLinkItem({
   index,
   allowSort,
+  onDraftChange,
   ...linkItem
 }: SocialLinkItemProps) {
   const {
-    id,
+    // id,
     icon,
     name,
-    link,
-    isDraft,
+    // link,
+    // isDraft,
   } = linkItem;
-  const [isSelected, setIsSelected] = useState(true);
+
   const onItemClick = () => {
     event.emit(
       EVENTS.SHOW_MODAL_ADD_SOCIAL_LINK_ICON,
@@ -45,7 +46,9 @@ export default function SocialLinkItem({
         <i className='iconfont-my icon-my-edit'></i>
       </div>
 
-      <Switch isSelected={isSelected} size='sm' />
+      {/* <Switch isSelected={!isDraft} size='sm' onValueChange={(val) => {
+        onDraftChange(val);
+      }} /> */}
     </div>
   );
 }

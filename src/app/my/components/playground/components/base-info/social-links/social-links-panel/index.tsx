@@ -10,9 +10,17 @@ import SocialLinkItem from '../social-link-item';
 import style from './social-links-panel.module.scss';
 import { SocialLinksPanelProps } from './types';
 import { useState } from 'react';
+import { SocialLinksPosition } from '@/app/my/redux/my';
 
-export default function SocialLinksPanel({ list, onSortUpdate }: SocialLinksPanelProps) {
+export default function SocialLinksPanel({ list, position, onSortUpdate, onPositionChange, onDraftChange }: SocialLinksPanelProps) {
+  /**
+   * 由于当前组件是在弹窗中使用的，已经脱离了 redux 的数据流
+   * 因此传入的参数都是 useRef 的变量
+   * 在组件内部需要用 useState 再包裹一层
+   */
   const [ state, setState ] = useState(list);
+  const [ socialLinkPosition, setSocialLinkPosition ] = useState(position);
+
   return (
     <div className={style.wrapper}>
       <p className='main-title'>通过配置社交平台链接，告诉大家在哪可以找到你~</p>
@@ -39,6 +47,9 @@ export default function SocialLinksPanel({ list, onSortUpdate }: SocialLinksPane
                     {...item}
                     index={index}
                     allowSort={state.length > 1}
+                    onDraftChange={(value) => {
+                      onDraftChange?.(value, index)
+                    }}
                   />
                 ))
               }
@@ -51,9 +62,16 @@ export default function SocialLinksPanel({ list, onSortUpdate }: SocialLinksPane
         <p className='main-title'>图标位置</p>
         <p className='secondary-title'>自定义社交平台图标的位置</p>
 
-        <RadioGroup className={style['icon-position-options']}>
-          <Radio value='top'>上方</Radio>
-          <Radio value='bottom'>下方</Radio>
+        <RadioGroup
+          className={style['icon-position-options']}
+          value={socialLinkPosition}
+          onValueChange={(value) => {
+            setSocialLinkPosition(value as SocialLinksPosition);
+            onPositionChange?.(value as SocialLinksPosition);
+          }}
+        >
+          <Radio value={SocialLinksPosition.TOP}>上方</Radio>
+          <Radio value={SocialLinksPosition.BOTTOM}>下方</Radio>
         </RadioGroup>
       </div>
 

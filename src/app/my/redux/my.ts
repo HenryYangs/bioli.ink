@@ -2,11 +2,17 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { SocialLink } from '@/app/types/my';
 
+export enum SocialLinksPosition {
+  TOP = 'top',
+  BOTTOM = 'bottom',
+}
+
 interface MyStore {
   avatar: string;
   username: string;
   bio: string;
   socialLinks: SocialLink[];
+  socialLinksPosition: SocialLinksPosition;
 }
 
 const initialState: MyStore = {
@@ -14,6 +20,7 @@ const initialState: MyStore = {
   username: '',
   bio: '',
   socialLinks: [],
+  socialLinksPosition: SocialLinksPosition.TOP,
 }
 
 export const mySlice = createSlice({
@@ -31,6 +38,9 @@ export const mySlice = createSlice({
     },
     updateSocialLinks: (state, action: PayloadAction<SocialLink[]>) => {
       state.socialLinks = action.payload;
+    },
+    updateSocialLinksPosition: (state, action: PayloadAction<SocialLinksPosition>) => {
+      state.socialLinksPosition = action.payload;
     }
   },
 });
@@ -41,4 +51,5 @@ export const {
   updateUsername,
   updateBio,
   updateSocialLinks,
+  updateSocialLinksPosition,
 } = mySlice.actions;
