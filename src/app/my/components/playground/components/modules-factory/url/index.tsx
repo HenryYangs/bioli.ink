@@ -17,6 +17,7 @@ export default function URL({
 }: URLProps) {
   const dispatch = useDispatch();
   const [hasLinkError, setHasLinkError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onBlurHandler = (key: string, event: any) => {
@@ -31,6 +32,7 @@ export default function URL({
 
   return (
     <ModuleTemplate
+      index={index}
       type={TemplateType.URL}
       coreContent={
         <div className={style['content-wrapper']}>
@@ -54,12 +56,15 @@ export default function URL({
                 const value = (event.target as HTMLInputElement).value;
                 const result = value.match(/^http(s)?:\/\/(.*)/);
 
+                setErrorMessage('链接不合法');
                 setHasLinkError(!Boolean(result));
               }
             }}
           />
           {/* TODO 样式 */}
-          {hasLinkError ? '链接不合法' : null}
+          {hasLinkError ? (
+            <p className={style['illegal-url']}>{errorMessage}</p>
+          ) : null}
         </div>
       }
     >

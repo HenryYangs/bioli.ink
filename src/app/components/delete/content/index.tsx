@@ -8,7 +8,7 @@ import style from './content.module.scss';
 import { ContentProps } from './types';
 
 export default function Content(props: ContentProps = {}) {
-  const { title, onConfirm } = props;
+  const { title, triggerCls = '', onConfirm } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const onConfirmHandler = () => {
@@ -25,7 +25,7 @@ export default function Content(props: ContentProps = {}) {
     >
       <PopoverTrigger>
         {/* TODO 这里要考虑 icon 是否要提到 common 里 */}
-        <i className={cls('iconfont-my', 'icon-my-delete', style['icon-delete'])}></i>
+        <i className={cls('iconfont-my', 'icon-my-delete', style['icon-delete'], triggerCls)}></i>
       </PopoverTrigger>
 
       <PopoverContent className={style['delete-content']}>

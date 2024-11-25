@@ -3,5 +3,9 @@
 }
 
 .plain-url-wrapper {
-  @apply px-[20px] py-[12px] text-center;
+  @apply text-center;
+}
+
+.url {
+  @apply px-[20px] py-[12px];
 }

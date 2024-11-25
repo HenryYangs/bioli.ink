@@ -9,6 +9,9 @@ export interface ModuleTemplateProps {
 
   // 自定义的模板名称，仅展示
   typeName?: string;
+
+  // 当前索引
+  index: number;
 }
 
 export interface TemplateTool {

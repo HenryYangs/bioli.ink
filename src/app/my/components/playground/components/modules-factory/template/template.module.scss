@@ -34,14 +34,6 @@
   @apply scale-75;
 }
 
-.icon-action {
-  @apply text-[var(--text-color)] cursor-pointer;
-
-  &:hover {
-    @apply text-[var(--main-color)]; // TODO 改颜色
-  }
-}
-
 .tools-wrapper {
   @apply flex justify-start items-center gap-4;
 }
@@ -60,4 +52,8 @@
       @apply text-[var(--text-color)] opacity-40;
     }
   }
+}
+
+.action-delete {
+  @apply ml-[12px] text-[16px];
 }

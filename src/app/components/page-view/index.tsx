@@ -18,6 +18,7 @@ export default function PageView({
   username,
   bio,
   socialLinks,
+  userModules,
   className = ''
 }: PageViewProps) {
   return (
@@ -50,11 +51,11 @@ export default function PageView({
         </section>
 
         <section className={style['user-modules']}>
-          <URL />
-          <URL />
-          <URL />
-          <URL />
-          <URL />
+          {
+            userModules.map(module => {
+              return <URL key={module['data-id']} {...module} />
+            })
+          }
         </section>
 
         <FooterLogo className={style['footer-logo']} />

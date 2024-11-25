@@ -9,3 +9,7 @@
 .title {
   @apply font-semibold;
 }
+
+.illegal-url {
+  @apply text-[12px] text-danger;
+}

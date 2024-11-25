@@ -1,6 +1,9 @@
 import { Card, CardBody } from '@nextui-org/card';
 import { Switch } from '@nextui-org/switch';
+import { useDispatch } from 'react-redux';
 
+import DeleteContent from '@/app/components/delete/content';
+import { removeUserModule } from '@/app/my/redux/my';
 import { cls } from '@/app/utils/string';
 
 import { TYPE_TITLE_MAP } from '../config';
@@ -9,10 +12,16 @@ import style from './template.module.scss';
 import { ModuleTemplateProps } from './types';
 
 export default function ModuleTemplate({
+  index,
   type,
   typeName,
   coreContent,
 }: ModuleTemplateProps) {
+  const dispatch = useDispatch();
+  const onRemoveHandler = () => {
+    dispatch(removeUserModule(index));
+  };
+
   return (
     <Card>
       <CardBody className={style.main}>
@@ -47,15 +56,40 @@ export default function ModuleTemplate({
 
           <div className={style['action-wrapper']}>
             <div className={style['action-row']}>
-              <i className={cls('iconfont-my', 'icon-my-share', style['icon-action'])} title='分享'></i>
+              <i
+                className={
+                  cls(
+                    'iconfont-my',
+                    'icon-my-share',
+                    style.tool,
+                    style.disabled,
+                  )
+                }
+                title='分享'
+              ></i>
 
-              <Switch defaultSelected size='sm' className={style['template-visible']} />
+              <Switch
+                defaultSelected
+                size='sm'
+                isDisabled
+                className={cls(style['template-visible'])}
+              />
             </div>
 
             <div className={style['action-row']}>
-              <i className={cls('iconfont-my', 'icon-my-add', style['icon-action'])} title='新增'></i>
+              <i
+                className={
+                  cls(
+                    'iconfont-my',
+                    'icon-my-add',
+                    style.tool,
+                    style.disabled,
+                  )
+                }
+                title='新增'
+              ></i>
 
-              <i className={cls('iconfont-my', 'icon-my-delete', style['icon-action'], 'ml-[12px]')} title='删除'></i>
+              <DeleteContent triggerCls={style['action-delete']} onConfirm={onRemoveHandler} />
             </div>
           </div>
         </section>

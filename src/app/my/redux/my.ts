@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { SocialLink } from '@/app/types/my';
+import { UserModule } from '@/app/types/my/module';
 
 export enum SocialLinksPosition {
   TOP = 'top',
@@ -13,7 +14,7 @@ interface MyStore {
   bio: string;
   socialLinks: SocialLink[];
   socialLinksPosition?: SocialLinksPosition; // TODO
-  userModules: any[];
+  userModules: UserModule[];
 }
 
 const initialState: MyStore = {
@@ -44,16 +45,21 @@ export const mySlice = createSlice({
     updateSocialLinksPosition: (state, action: PayloadAction<SocialLinksPosition>) => {
       state.socialLinksPosition = action.payload;
     },
-    addUserModule: (state, action: PayloadAction<any>) => {
+    addUserModule: (state, action: PayloadAction<UserModule>) => {
       state.userModules.unshift(action.payload);
     },
-    deleteUseModule: (state, action: PayloadAction<number>) => {
+    removeUserModule: (state, action: PayloadAction<number>) => {
       state.userModules.splice(action.payload, 1);
     },
-    updateUserModule: (state, action: PayloadAction<{ index: number; item: any }>) => {
-      state.userModules.splice(action.payload.index, 1, action.payload.item);
+    updateUserModule: (state, action: PayloadAction<{ index: number; item: Partial<UserModule> }>) => {
+      const newUserModule = {
+        ...state.userModules[action.payload.index],
+        ...action.payload.item,
+      };
+
+      state.userModules.splice(action.payload.index, 1, newUserModule);
     },
-    resetUserModules: (state, action: PayloadAction<any[]>) => {
+    resetUserModules: (state, action: PayloadAction<UserModule[]>) => {
       state.userModules = action.payload;
     },
   },
@@ -67,7 +73,7 @@ export const {
   updateSocialLinks,
   updateSocialLinksPosition,
   addUserModule,
-  deleteUseModule,
+  removeUserModule,
   updateUserModule,
   resetUserModules,
 } = mySlice.actions;

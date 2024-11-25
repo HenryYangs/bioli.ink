@@ -1,6 +1,8 @@
 import { ReactSortable } from '@miestasmia/react-sortablejs';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { UserModule } from '@/app/types/my/module';
+
 import { RootState } from '../../redux';
 import { resetUserModules } from '../../redux/my';
 import AddModule from './components/add-module';
@@ -14,7 +16,7 @@ export default function Playground() {
   const { userModules } = useSelector((state: RootState) => state.my);
   const dispatch = useDispatch();
 
-  const setUserModules = (list: any[]) => {
+  const setUserModules = (list: UserModule[]) => {
     dispatch(resetUserModules(list));
   }
   return (
@@ -33,7 +35,10 @@ export default function Playground() {
             ghostClass='drag-ghost'
             chosenClass='drag-chosen'
             animation={200}
-            list={userModules}
+            list={userModules.map(module => ({
+              ...module,
+              id: module['data-id']
+            }))}
             setList={setUserModules}
             className={style.modules}
           >

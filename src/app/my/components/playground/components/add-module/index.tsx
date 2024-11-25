@@ -1,10 +1,9 @@
 'use client'
 
 import { Button } from '@nextui-org/button';
-import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 
-import { ModuleType } from '@/app/constant/module';
+import { DEFAULT_URL } from '@/app/my/constant/user-module';
 import { addUserModule } from '@/app/my/redux/my';
 import { cls } from '@/app/utils/string';
 
@@ -13,14 +12,8 @@ import style from './add-module.module.scss';
 export default function AddModule() {
   const dispatch = useDispatch();
 
-  const onAddModule = () => {
-    // TODO 单独维护各模块的默认值
-    dispatch(addUserModule({
-      type: ModuleType.URL,
-      'data-id': nanoid(8),
-      title: '',
-      link: '',
-    }));
+  const onAddURL = () => {
+    dispatch(addUserModule(DEFAULT_URL));
   };
 
   return (
@@ -28,7 +21,7 @@ export default function AddModule() {
       <Button
         radius='full'
         className={cls(style['add-link'], 'btn-main-color')}
-        onPress={onAddModule}
+        onPress={onAddURL}
       >
         <i className={cls('iconfont-my', 'icon-my-plus', style['add-link_icon'])}></i>
         <span>添加链接</span>
