@@ -7,7 +7,7 @@
 }
 
 .base-info {
-  @apply flex flex-col items-center;
+  @apply flex flex-col items-center mb-[10px];
 }
 
 .avatar {
@@ -19,17 +19,17 @@
 }
 
 .bio {
-  @apply max-w-[80%] text-center mt-[35px];
+  @apply max-w-[80%] text-center mt-[15px];
 
   word-wrap: break-word;
 }
 
 .social-links {
-  @apply mt-[35px];
+  @apply mt-[25px];
 }
 
 .user-modules {
-  @apply mt-[35px] flex flex-col gap-4;
+  @apply mt-[20px] flex flex-col gap-4;
 }
 
 .footer-logo {

@@ -1,7 +1,7 @@
 'use client'
 
-import { Switch } from '@nextui-org/switch';
-import { useState } from 'react';
+// import { Switch } from '@nextui-org/switch';
+// import { useState } from 'react';
 
 import { EVENTS } from '@/app/constant/events';
 import event from '@/app/utils/event';
@@ -13,7 +13,7 @@ import { SocialLinkItemProps } from './types';
 export default function SocialLinkItem({
   index,
   allowSort,
-  onDraftChange,
+  // onDraftChange,
   ...linkItem
 }: SocialLinkItemProps) {
   const {

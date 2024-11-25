@@ -1,49 +1,52 @@
-'use client'
-
 import { ReactSortable } from '@miestasmia/react-sortablejs';
-import { useState } from 'react';
-import { Provider } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { store } from '../../redux';
+import { RootState } from '../../redux';
+import { resetUserModules } from '../../redux/my';
 import AddModule from './components/add-module';
 import BaseInfo from './components/base-info';
 import URL from './components/modules-factory/url';
 import Preview from './components/preview';
-import StyleSettings from './components/style-settings';
+// import StyleSettings from './components/style-settings';
 import style from './playground.module.scss';
 
 export default function Playground() {
-  const [list, setList] = useState([]);
+  const { userModules } = useSelector((state: RootState) => state.my);
+  const dispatch = useDispatch();
 
+  const setUserModules = (list: any[]) => {
+    dispatch(resetUserModules(list));
+  }
   return (
-    <Provider store={store}>
-      <div className={style.wrapper}>
-        <main className={style['action-wrapper']}>
-          <div className={style['action-inner-wrapper']}>
-            <BaseInfo />
+    <div className={style.wrapper}>
+      <main className={style['action-wrapper']}>
+        <div className={style['action-inner-wrapper']}>
+          <BaseInfo />
 
-            <StyleSettings />
+          {/* TODO */}
+          {/* <StyleSettings /> */}
 
-            <AddModule />
+          <AddModule />
 
-            <ReactSortable
-              handle='.template-drag-icon'
-              ghostClass='drag-ghost'
-              chosenClass='drag-chosen'
-              animation={200}
-              list={list}
-              setList={setList}
-              className={style.modules}
-            >
-              <URL key='a' />
-              <URL key='b' />
-              <URL key='c' />
-            </ReactSortable>
-          </div>
-        </main>
+          <ReactSortable
+            handle='.template-drag-icon'
+            ghostClass='drag-ghost'
+            chosenClass='drag-chosen'
+            animation={200}
+            list={userModules}
+            setList={setUserModules}
+            className={style.modules}
+          >
+            {
+              userModules.map((item, index) => {
+                return <URL index={index} key={item['data-id']} {...item} />;
+              })
+            }
+          </ReactSortable>
+        </div>
+      </main>
 
-        <Preview />
-      </div>
-    </Provider>
+      <Preview />
+    </div>
   );
 }

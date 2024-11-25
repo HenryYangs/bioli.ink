@@ -1,25 +1,31 @@
 import { ReactSortable } from '@miestasmia/react-sortablejs';
 import { Button } from '@nextui-org/button';
-import { Radio, RadioGroup } from "@nextui-org/radio";
+// import { Radio, RadioGroup } from "@nextui-org/radio";
+import { useState } from 'react';
 
 import { EVENTS } from '@/app/constant/events';
+// import { SocialLinksPosition } from '@/app/my/redux/my';
 import event from '@/app/utils/event';
 import { cls } from '@/app/utils/string';
 
 import SocialLinkItem from '../social-link-item';
 import style from './social-links-panel.module.scss';
 import { SocialLinksPanelProps } from './types';
-import { useState } from 'react';
-import { SocialLinksPosition } from '@/app/my/redux/my';
 
-export default function SocialLinksPanel({ list, position, onSortUpdate, onPositionChange, onDraftChange }: SocialLinksPanelProps) {
+export default function SocialLinksPanel({
+  list,
+  // position,
+  onSortUpdate,
+  // onPositionChange,
+  // onDraftChange,
+}: SocialLinksPanelProps) {
   /**
    * 由于当前组件是在弹窗中使用的，已经脱离了 redux 的数据流
    * 因此传入的参数都是 useRef 的变量
    * 在组件内部需要用 useState 再包裹一层
    */
   const [ state, setState ] = useState(list);
-  const [ socialLinkPosition, setSocialLinkPosition ] = useState(position);
+  // const [ socialLinkPosition, setSocialLinkPosition ] = useState(position);
 
   return (
     <div className={style.wrapper}>
@@ -47,9 +53,9 @@ export default function SocialLinksPanel({ list, position, onSortUpdate, onPosit
                     {...item}
                     index={index}
                     allowSort={state.length > 1}
-                    onDraftChange={(value) => {
-                      onDraftChange?.(value, index)
-                    }}
+                    // onDraftChange={(value) => {
+                    //   onDraftChange?.(value, index)
+                    // }}
                   />
                 ))
               }
@@ -58,7 +64,8 @@ export default function SocialLinksPanel({ list, position, onSortUpdate, onPosit
         }
       </main>
 
-      <div className={style['icon-position']}>
+      {/* TODO */}
+      {/* <div className={style['icon-position']}>
         <p className='main-title'>图标位置</p>
         <p className='secondary-title'>自定义社交平台图标的位置</p>
 
@@ -73,7 +80,7 @@ export default function SocialLinksPanel({ list, position, onSortUpdate, onPosit
           <Radio value={SocialLinksPosition.TOP}>上方</Radio>
           <Radio value={SocialLinksPosition.BOTTOM}>下方</Radio>
         </RadioGroup>
-      </div>
+      </div> */}
 
       <div className={style['btn-action']}>
         <Button

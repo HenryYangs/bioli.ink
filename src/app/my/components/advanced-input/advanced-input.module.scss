@@ -1,5 +1,9 @@
 .wrapper {
-  @apply w-full h-[24px];
+  @apply flex justify-start items-center w-full h-[24px] cursor-pointer;
+
+  .hidden-input {
+    @apply hidden;
+  }
 }
 
 .text-wrapper {
@@ -16,7 +20,7 @@
 }
 
 .input-wrapper {
-  @apply h-[24px] min-h-[24px] !bg-transparent p-0;
+  @apply h-[24px] min-h-[24px] !bg-transparent p-0 shadow-[none];
 
   &:hover,
   &:focus,

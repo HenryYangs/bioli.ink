@@ -4,9 +4,9 @@ import { Switch } from '@nextui-org/switch';
 import { cls } from '@/app/utils/string';
 
 import { TYPE_TITLE_MAP } from '../config';
+import { TEMPLATE_TOOLS } from './config';
 import style from './template.module.scss';
 import { ModuleTemplateProps } from './types';
-import { TEMPLATE_TOOLS } from './config';
 
 export default function ModuleTemplate({
   type,
@@ -33,6 +33,7 @@ export default function ModuleTemplate({
               {
                 TEMPLATE_TOOLS.map(tool => (
                   <div
+                    key={tool.id}
                     className={cls(style.tool, tool.disabled ? style.disabled : '')}
                     title={tool.label}
                     onClick={tool.onClick}

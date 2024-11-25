@@ -12,7 +12,8 @@ interface MyStore {
   username: string;
   bio: string;
   socialLinks: SocialLink[];
-  socialLinksPosition: SocialLinksPosition;
+  socialLinksPosition?: SocialLinksPosition; // TODO
+  userModules: any[];
 }
 
 const initialState: MyStore = {
@@ -21,6 +22,7 @@ const initialState: MyStore = {
   bio: '',
   socialLinks: [],
   socialLinksPosition: SocialLinksPosition.TOP,
+  userModules: [],
 }
 
 export const mySlice = createSlice({
@@ -41,7 +43,19 @@ export const mySlice = createSlice({
     },
     updateSocialLinksPosition: (state, action: PayloadAction<SocialLinksPosition>) => {
       state.socialLinksPosition = action.payload;
-    }
+    },
+    addUserModule: (state, action: PayloadAction<any>) => {
+      state.userModules.unshift(action.payload);
+    },
+    deleteUseModule: (state, action: PayloadAction<number>) => {
+      state.userModules.splice(action.payload, 1);
+    },
+    updateUserModule: (state, action: PayloadAction<{ index: number; item: any }>) => {
+      state.userModules.splice(action.payload.index, 1, action.payload.item);
+    },
+    resetUserModules: (state, action: PayloadAction<any[]>) => {
+      state.userModules = action.payload;
+    },
   },
 });
 
@@ -52,4 +66,8 @@ export const {
   updateBio,
   updateSocialLinks,
   updateSocialLinksPosition,
+  addUserModule,
+  deleteUseModule,
+  updateUserModule,
+  resetUserModules,
 } = mySlice.actions;

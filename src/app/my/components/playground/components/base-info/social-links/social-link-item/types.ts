@@ -3,5 +3,5 @@ import { SocialLink } from '@/app/types/my';
 export interface SocialLinkItemProps extends SocialLink {
   index: number;
   allowSort: boolean;
-  onDraftChange?: (value: boolean) => void;
+  // onDraftChange?: (value: boolean) => void;
 }

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { EVENTS } from '@/app/constant/events';
 import { useEventListener } from '@/app/hooks/use-event-listener';
 import { RootState } from '@/app/my/redux';
-import { updateAvatar, updateBio, updateSocialLinks, updateSocialLinksPosition, updateUsername } from '@/app/my/redux/my';
+import { updateAvatar, updateBio, updateSocialLinks, /* updateSocialLinksPosition, */updateUsername } from '@/app/my/redux/my';
 import { SocialLink } from '@/app/types/my';
 import event from '@/app/utils/event';
 
@@ -20,11 +20,11 @@ import SocialLinksPanel from '../../components/base-info/social-links/social-lin
  */
 export const useBaseInfoEvents = () => {
   const dispatch = useDispatch();
-  const { username, bio, socialLinks, socialLinksPosition } = useSelector((root: RootState) => root.my);
+  const { username, bio, socialLinks, /* socialLinksPosition */ } = useSelector((root: RootState) => root.my);
   const latestUsername = useLatest(username);
   const latestBio = useLatest(bio);
   const latestSocialLinks = useLatest(socialLinks);
-  const latestSocialLinksPosition = useLatest(socialLinksPosition);
+  // const latestSocialLinksPosition = useLatest(socialLinksPosition);
 
   const onBaseInfoSave = ({ username, bio }: { username: string; bio: string }) => {
     dispatch(updateUsername(username));
@@ -83,20 +83,20 @@ export const useBaseInfoEvents = () => {
             copy.splice(newIndex, 0, targetItem[0]);
             dispatch(updateSocialLinks(copy));
           }}
-          position={latestSocialLinksPosition.current}
-          onPositionChange={(newVal) => {
-            if (!newVal) return;
+          // position={latestSocialLinksPosition.current}
+          // onPositionChange={(newVal) => {
+          //   if (!newVal) return;
 
-            dispatch(updateSocialLinksPosition(newVal));
-          }}
-          onDraftChange={(value, index) => {
-            if (value === undefined || index === undefined) return;
+          //   dispatch(updateSocialLinksPosition(newVal));
+          // }}
+          // onDraftChange={(value, index) => {
+          //   if (value === undefined || index === undefined) return;
 
-            const copy = [...latestSocialLinks.current];
+          //   const copy = [...latestSocialLinks.current];
 
-            copy[index].isDraft = value;
-            dispatch(updateSocialLinks(copy));
-          }}
+          //   copy[index].isDraft = value;
+          //   dispatch(updateSocialLinks(copy));
+          // }}
         />
       ),
       footer: false,

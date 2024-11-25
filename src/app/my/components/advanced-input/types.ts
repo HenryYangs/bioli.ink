@@ -1,6 +1,6 @@
 import { InputProps } from '@nextui-org/input';
 
 export interface AdvancedInputProps {
-  inputProps?: InputProps;
+  inputProps: InputProps;
   className?: string;
 }
