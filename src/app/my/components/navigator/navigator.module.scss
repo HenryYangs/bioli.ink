@@ -25,3 +25,15 @@
 .nav-item_name {
   @apply text-[14px] font-medium;
 }
+
+.disabled {
+  @apply text-default-400;
+
+  &:hover {
+    @apply hover:text-default-400 hover:bg-transparent;
+  }
+
+  .nav-item_link {
+    @apply cursor-not-allowed;
+  }
+}

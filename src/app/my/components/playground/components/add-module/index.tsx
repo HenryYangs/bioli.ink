@@ -3,8 +3,8 @@
 import { Button } from '@nextui-org/button';
 import { useDispatch } from 'react-redux';
 
-import { DEFAULT_URL } from '@/app/my/constant/user-module';
 import { addUserModule } from '@/app/my/redux/my';
+import { getDefaultUrl } from '@/app/my/utils/user-module';
 import { cls } from '@/app/utils/string';
 
 import style from './add-module.module.scss';
@@ -13,7 +13,7 @@ export default function AddModule() {
   const dispatch = useDispatch();
 
   const onAddURL = () => {
-    dispatch(addUserModule(DEFAULT_URL));
+    dispatch(addUserModule(getDefaultUrl()));
   };
 
   return (
