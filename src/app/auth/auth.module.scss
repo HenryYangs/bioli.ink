@@ -1,0 +1,15 @@
+.wrapper {
+  @apply w-[100vw] h-[100vh] flex justify-center items-center;
+}
+
+.auth-image {
+  @apply w-[60%];
+}
+
+.auth-form {
+  @apply flex-1 h-[calc(100vh-40px)] mr-[20px] flex flex-col items-center justify-start py-[20px] px-[60px];
+}
+
+.auth-logo {
+  @apply my-[80px];
+}
