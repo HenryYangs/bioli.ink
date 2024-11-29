@@ -2,7 +2,7 @@ import 'react-image-crop/dist/ReactCrop.css';
 
 import { Button } from '@nextui-org/button';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 // https://github.com/sekoyo/react-image-crop?tab=readme-ov-file#props
 import ReactCrop, {
   Crop,
@@ -12,7 +12,6 @@ import ReactCrop, {
 import DragAndDrop from '@/app/components/drag-drop';
 import { EVENTS } from '@/app/constant/events';
 import { useUploadBase64 } from '@/app/hooks/api/use-upload-base64';
-import { useDebounceEffect } from '@/app/hooks/use-debounce-effect';
 import { useEventListener } from '@/app/hooks/use-event-listener';
 import { FileType } from '@/app/types/my';
 import { cls } from '@/app/utils/string';
@@ -82,24 +81,20 @@ export default function PersonalAvatar({ onSuccess }: { onSuccess: (url: string)
     }
   };
 
-  useDebounceEffect(
-    async () => {
-      if (
-        completedCrop?.width &&
-        completedCrop?.height &&
-        imgRef.current &&
-        previewCanvasRef.current
-      ) {
-        canvasPreview(
-          imgRef.current,
-          previewCanvasRef.current,
-          completedCrop,
-        )
-      }
-    },
-    100,
-    [completedCrop],
-  );
+  useEffect(() => {
+    if (
+      completedCrop?.width &&
+      completedCrop?.height &&
+      imgRef.current &&
+      previewCanvasRef.current
+    ) {
+      canvasPreview(
+        imgRef.current,
+        previewCanvasRef.current,
+        completedCrop,
+      )
+    }
+  }, [completedCrop]);
 
   // 重置裁剪框
   const onReset = () => {
