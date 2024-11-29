@@ -7,3 +7,17 @@ export interface GetUploadTokenReq {
 export interface GetUploadTokenRsp {
   token: string;
 }
+
+export interface GetVerifyCodeReq {
+  mobile: string;
+  [key: string]: string;
+}
+
+export interface AuthReq {
+  mobile: string;
+  verifyCode: string;
+}
+
+export interface RegisterRsp {
+  id: string;
+}

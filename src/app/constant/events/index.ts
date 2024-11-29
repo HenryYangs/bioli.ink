@@ -1,4 +1,5 @@
 export enum EVENTS {
+  SHOW_ALERT = 'SHOW_ALERT',
   SHOW_MODAL = 'SHOW_MODAL',
   HIDE_MODAL = 'HIDE_MODAL',
   AVATAR_UPDATE = 'AVATAR_UPDATE', // 用户在本地选择了新的头像

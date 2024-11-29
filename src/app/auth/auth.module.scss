@@ -2,8 +2,8 @@
   @apply w-[100vw] h-[100vh] flex justify-center items-center;
 }
 
-.auth-image {
-  @apply w-[60%];
+.auth-image-wrapper {
+  @apply flex justify-center items-center w-[60%];
 }
 
 .auth-form {
@@ -11,5 +11,5 @@
 }
 
 .auth-logo {
-  @apply my-[80px];
+  @apply my-[60px];
 }

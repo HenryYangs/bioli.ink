@@ -4,6 +4,7 @@ import './assets/style/global.scss';
 import { NextUIProvider } from '@nextui-org/system';
 import type { Metadata } from 'next';
 
+import Alert from './components/alert';
 import Modal from './components/modal';
 
 // const geistSans = localFont({
@@ -37,6 +38,7 @@ export default function RootLayout({
             {children}
             
             <Modal />
+            <Alert />
           </NextUIProvider>
         </body>
     </html>

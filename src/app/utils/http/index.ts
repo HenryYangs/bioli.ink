@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-import { ApiStatus, HttpStatus } from '@/app/types/common/http-status';
+import { EVENTS } from '@/app/constant/events';
+import { ApiStatus } from '@/app/types/common/http-status';
 
+import event from '../event';
 import { parseJSON, queryStringify } from '../transform';
 import { parseSearch } from '../url';
 
@@ -86,18 +88,29 @@ instance.interceptors.response.use(
     // }
 
     // 正常的请求
-    if (response.status === HttpStatus.OK && response.data.code === ApiStatus.SUCCESS) {
+    if (
+      String(response.status).startsWith('2') &&
+      (response.data.code === ApiStatus.SUCCESS || Object.entries(response.data).length === 0)
+    ) {
       return Promise.resolve(response.data.data);
     }
 
     // TODO 引入 redux 实现全局 message
-    // message.error(response.data.message);
+    event.emit(EVENTS.SHOW_ALERT, {
+      text: response.data.message || '请求失败，请重试',
+      color: 'danger',
+    });
     return Promise.reject(response.data);
   },
   function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
-    return Promise.reject(error);
+    event.emit(EVENTS.SHOW_ALERT, {
+      text: error.response.data.message || '请求失败，请重试',
+      color: 'danger',
+    });
+
+    return Promise.reject(error.response.data);
   }
 );
 
