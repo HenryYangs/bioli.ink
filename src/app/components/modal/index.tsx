@@ -11,6 +11,7 @@ import {
   ModalContent, 
   ModalFooter,
   ModalHeader,
+  ModalProps,
   useDisclosure,
 } from '@nextui-org/modal';
 import React, { useState } from 'react';
@@ -29,6 +30,8 @@ export default function Modal() {
   const [modalBody, setModalBody] = useState<React.ReactNode | React.ReactNode[]>(null);
   const [modalFooter, setModalFooter] = useState<React.ReactNode | React.ReactNode[] | boolean>(null);
   const [backToEvent, setBackToEvent] = useState<EVENTS>();
+  const [modalProps, setModalProps] = useState<Partial<ModalProps>>();
+  const [showCloseButton, setShowCloseButton] = useState(true);
 
   const showModal = (props: ModalOperateProps = {}) => {
     const {
@@ -36,12 +39,16 @@ export default function Modal() {
       body = null,
       footer = null,
       backTo,
+      showCloseBtn = true,
+      modalProps: innerModalProps,
     } = props;
 
     setTitle(title);
     setModalBody(body);
     setModalFooter(footer);
     setBackToEvent(backTo);
+    setModalProps(innerModalProps);
+    setShowCloseButton(showCloseBtn);
 
     onOpen();
   }
@@ -56,15 +63,17 @@ export default function Modal() {
 
   return (
     <ModalComponent
+      {...modalProps}
       scrollBehavior='inside'
       isOpen={isOpen}
       onClose={onOpenChange}
-      className={style.wrapper}
+      className={cls(style.wrapper, modalProps?.className || '')}
       classNames={{
-        closeButton: 'hidden',
+        // closeButton: 'hidden',
         base: 'max-h-[600px]',
         body: 'overflow-hidden'
       }}
+      hideCloseButton
     >
       <ModalContent>
         {() => (
@@ -79,10 +88,14 @@ export default function Modal() {
 
                 <span className={style.title}>{title}</span>
 
-                <i
-                  className={cls('iconfont-my', 'icon-my-close', style['icon-action'])}
-                  onClick={onOpenChange}
-                ></i>
+                {
+                  showCloseButton ? (
+                    <i
+                      className={cls('iconfont-my', 'icon-my-close', style['icon-action'])}
+                      onClick={onOpenChange}
+                    ></i>
+                  ) : null
+                }
               </div>
             </ModalHeader>
             <ModalBody>{modalBody}</ModalBody>

@@ -36,6 +36,11 @@ instance.interceptors.request.use(
     // 在发送请求之前做些什么
     // TODO 输出请求的参数，url 等
 
+    config.withCredentials = !Boolean([
+      '/auth/register',
+      '/auth/login'
+    ].some(url => config.url?.includes(url)));
+
     if (config.method === 'get') {
       const [, url, search] = config.url?.match(/(.*)(\?.*)/) || [];
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -53,19 +58,6 @@ instance.interceptors.request.use(
     }
 
     return config;
-
-    // if (URL_AUTH_WHITE_LIST.find(url => config.url?.startsWith(url))) {
-    // }
-
-    // const { token } = parseJSON(localStorage.getItem(STORAGE_LOGIN_INFO) || '');
-
-    // return {
-    //   ...config,
-    //   _headers: {
-    //     ...config.headers,
-    //     ...(token ? { authorization: `Bearer ${token}` } : {}),
-    //   }
-    // }
   },
   function (error) {
     // 对请求错误做些什么
@@ -106,11 +98,11 @@ instance.interceptors.response.use(
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
     event.emit(EVENTS.SHOW_ALERT, {
-      text: error.response.data.message || '请求失败，请重试',
+      text: error.response?.data?.message || '请求失败，请重试',
       color: 'danger',
     });
 
-    return Promise.reject(error.response.data);
+    return Promise.reject(error.response?.data);
   }
 );
 

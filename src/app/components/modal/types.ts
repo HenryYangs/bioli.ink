@@ -1,3 +1,5 @@
+import { ModalProps } from '@nextui-org/modal';
+
 import { EVENTS } from '@/app/constant/events';
 
 export interface ModalOperateProps {
@@ -7,4 +9,6 @@ export interface ModalOperateProps {
   confirmText?: string;
   cancelText?: string;
   backTo?: EVENTS;
+  showCloseBtn?: boolean;
+  modalProps?: Partial<ModalProps>;
 }

@@ -5,6 +5,7 @@ import '@/app/assets/icon/my/iconfont.css';
 // import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
+import Logo from '@/app/components/logo';
 import { cls } from '@/app/utils/string';
 
 import UserEntry from '../user';
@@ -20,7 +21,7 @@ export default function Navigator() {
 
   return (
     <nav className={style.wrapper}>
-      {/* <Image src='' alt='logo' /> */}
+      <Logo width={30} height={30} />
 
       <ul className={style['nav-list']}>
         {

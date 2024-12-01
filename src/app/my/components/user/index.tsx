@@ -2,12 +2,15 @@ import { Avatar } from '@nextui-org/avatar';
 import { Button } from '@nextui-org/button';
 import {Popover, PopoverContent,PopoverTrigger} from '@nextui-org/popover';
 
+import { useUserBaseInfo } from '@/app/hooks/api/use-user-base-info';
 import { cls } from '@/app/utils/string';
 
 import More from './components/more';
 import style from './user.module.scss';
 
 export default function UserEntry() {
+  const { data } = useUserBaseInfo();
+
   return (
     <Popover placement='top-start' crossOffset={30}>
       <PopoverTrigger>
@@ -15,24 +18,20 @@ export default function UserEntry() {
           radius='full'
           className={cls(style.trigger, 'hover-bg')}
         >
-          <Avatar
-            src='https://ugc.production.linktr.ee/4549a59d-738e-469a-8548-e08adf2358f1_u-4064972523-1513109925-fm-26-gp-0.jpeg?io=true&size=avatar'
-          />
+          <Avatar src={data?.avatar} />
 
-          <span className={style.username}>@henryyang</span>
+          <span className={style.username}>@{data?.name || data?.username}</span>
         </Button>
       </PopoverTrigger>
 
       <PopoverContent>
         <div className={style.content}>
           <div className={style.user}>
-            <Avatar
-              src='https://ugc.production.linktr.ee/4549a59d-738e-469a-8548-e08adf2358f1_u-4064972523-1513109925-fm-26-gp-0.jpeg?io=true&size=avatar'
-            />
+            <Avatar src={data?.avatar} />
 
             <div>
-              <p className={style['info-name']}>@henryyang</p>
-              <p className={style['info-link']}>bioli.ink/henryyang</p>
+              <p className={style['info-name']}>@{data?.name || data?.username}</p>
+              <p className={style['info-link']}>bioli.ink/{data?.username}</p>
               {/* TODO 用户的付费等级 */}
               {/* <Button>Free</Button> */}
             </div>
