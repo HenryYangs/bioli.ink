@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { EVENTS } from '@/app/constant/events';
 import { useEventListener } from '@/app/hooks/use-event-listener';
+import { useUpdateUserConfig } from '@/app/my/hooks/use-update-user-config';
 import { RootState } from '@/app/my/redux';
 import { updateAvatar, updateBio, updateSocialLinks, /* updateSocialLinksPosition, */updateUsername } from '@/app/my/redux/my';
 import { SocialLink } from '@/app/types/my';
 import event from '@/app/utils/event';
+import { addTsAfterUrl } from '@/app/utils/url';
 
 import Info from '../../components/base-info/info';
 import PersonalAvatar from '../../components/base-info/personal-avatar';
@@ -20,15 +22,24 @@ import SocialLinksPanel from '../../components/base-info/social-links/social-lin
  */
 export const useBaseInfoEvents = () => {
   const dispatch = useDispatch();
+  const { uniqueId } = useSelector((root: RootState) => root.base);
+  console.log('uniqueId', uniqueId)
   const { username, bio, socialLinks, /* socialLinksPosition */ } = useSelector((root: RootState) => root.my);
+  
+  const latestUniqueId = useLatest(uniqueId);
   const latestUsername = useLatest(username);
   const latestBio = useLatest(bio);
   const latestSocialLinks = useLatest(socialLinks);
   // const latestSocialLinksPosition = useLatest(socialLinksPosition);
 
+  const { runAsync: runAsyncUpdateUserConfig } = useUpdateUserConfig();
+
   const onBaseInfoSave = ({ username, bio }: { username: string; bio: string }) => {
     dispatch(updateUsername(username));
     dispatch(updateBio(bio));
+    runAsyncUpdateUserConfig({
+      name: username, bio,
+    });
   };
 
   const onAddSocialLink = (item: SocialLink) => {
@@ -48,8 +59,15 @@ export const useBaseInfoEvents = () => {
   const showModalAvatar = () => {
     event.emit(EVENTS.SHOW_MODAL, {
       title: '个人头像',
-      body: <PersonalAvatar onSuccess={(url) => {
-        dispatch(updateAvatar(url));
+      body: <PersonalAvatar userId={latestUniqueId.current} onSuccess={(url) => {
+        dispatch(updateAvatar(addTsAfterUrl(url)));
+        runAsyncUpdateUserConfig({ avatar: url })
+          .then(() => {
+            event.emit(EVENTS.SHOW_ALERT, {
+              text: '修改头像成功！',
+              color: 'success',
+            });
+          });
         event.emit(EVENTS.HIDE_MODAL);
       }} />,
       footer: false

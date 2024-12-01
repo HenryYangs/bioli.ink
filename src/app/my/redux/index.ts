@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
+import { baseSlice } from './base';
 import { mySlice } from './my';
 
 const rootReducer = combineReducers({
+  base: baseSlice.reducer,
   my: mySlice.reducer,
 });
 

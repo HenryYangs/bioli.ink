@@ -4,6 +4,7 @@ import {Popover, PopoverContent,PopoverTrigger} from '@nextui-org/popover';
 
 import { useUserBaseInfo } from '@/app/hooks/api/use-user-base-info';
 import { cls } from '@/app/utils/string';
+import { addTsAfterUrl } from '@/app/utils/url';
 
 import More from './components/more';
 import style from './user.module.scss';
@@ -18,7 +19,7 @@ export default function UserEntry() {
           radius='full'
           className={cls(style.trigger, 'hover-bg')}
         >
-          <Avatar src={data?.avatar} />
+          <Avatar src={addTsAfterUrl(data?.avatar)} />
 
           <span className={style.username}>@{data?.name || data?.username}</span>
         </Button>

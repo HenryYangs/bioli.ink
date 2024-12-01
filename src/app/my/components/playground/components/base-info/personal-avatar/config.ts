@@ -15,3 +15,6 @@ export const BTN_CONFIRM_TEXT: Record<AvatarStatus, string> = {
   [AvatarStatus.CROP]: '裁剪',
   [AvatarStatus.UPLOAD]: '上传',
 };
+
+// 图片可展示的最大宽高
+export const IMG_MAX_SIZE = 500;

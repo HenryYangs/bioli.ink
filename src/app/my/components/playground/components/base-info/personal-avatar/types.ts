@@ -4,3 +4,8 @@ export enum AvatarStatus {
   CROP = 'crop',
   UPLOAD = 'upload',
 }
+
+export interface PersonalAvatarProps {
+  userId: string;
+  onSuccess: (url: string) => void;
+}

@@ -18,3 +18,13 @@ export const parseSearch = (rawSearch?: string) => {
 
   return result;
 };
+
+/**
+ * 给链接最后加时间戳，保证没有缓存
+ * TODO 不应该直接接?，需要判断传入的 url 里的内容
+ */
+export const addTsAfterUrl = (url: string = '') => {
+  if (!url) return '';
+
+  return `${url}?t=${Date.now()}`;
+};

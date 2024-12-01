@@ -41,3 +41,13 @@ export interface GetUserConfigRsp {
     author_id: string;
   }[]
 }
+
+export interface UpdateUserConfigReq {
+  name?: string;
+  type?: number;
+  otherType?: string;
+  avatar?: string;
+  bio?: string;
+  // TODO
+  platform?: unknown;
+}

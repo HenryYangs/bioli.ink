@@ -4,6 +4,6 @@ export interface UseUploadBase64Props {
   onSuccess: (url: string) => void;
 }
 
-export interface RunUploadBase64Props extends Pick<GetUploadTokenReq, 'type'> {
+export interface RunUploadBase64Props extends GetUploadTokenReq {
   base64: string;
 }

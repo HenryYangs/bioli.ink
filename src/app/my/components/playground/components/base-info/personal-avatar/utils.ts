@@ -2,6 +2,9 @@ import { centerCrop, makeAspectCrop, PixelCrop } from 'react-image-crop';
 
 import { file2base64 } from '@/app/utils/transform';
 
+/**
+ * 计算裁剪框的尺寸
+ */
 export const centerAspectCrop = (
   mediaWidth: number,
   mediaHeight: number,

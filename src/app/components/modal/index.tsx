@@ -68,11 +68,6 @@ export default function Modal() {
       isOpen={isOpen}
       onClose={onOpenChange}
       className={cls(style.wrapper, modalProps?.className || '')}
-      classNames={{
-        // closeButton: 'hidden',
-        base: 'max-h-[600px]',
-        body: 'overflow-hidden'
-      }}
       hideCloseButton
     >
       <ModalContent>

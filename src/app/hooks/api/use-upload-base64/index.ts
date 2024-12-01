@@ -11,9 +11,9 @@ export const useUploadBase64 = ({
   const [loading, setLoading] = useState(false);
   const { runAsync: runUploadToken } = useUploadToken();
 
-  const run = ({ type, base64 }: RunUploadBase64Props) => {
+  const run = ({ type, name, base64 }: RunUploadBase64Props) => {
     setLoading(true);
-    runUploadToken({ type })
+    runUploadToken({ type, name })
       .then(async ({ token }) => {
         const result = await uploadBase64({
           base64,
@@ -21,6 +21,9 @@ export const useUploadBase64 = ({
         });
 
         onSuccess(`${process.env.NEXT_PUBLIC_IMAGE_DOMAIN}/${result.key}`);
+        setLoading(false);
+      })
+      .finally(() => {
         setLoading(false);
       });
   };

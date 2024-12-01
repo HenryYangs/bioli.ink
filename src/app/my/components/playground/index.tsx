@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { UserModule } from '@/app/types/my/module';
 import { parseJSON } from '@/app/utils/transform';
+import { addTsAfterUrl } from '@/app/utils/url';
 
 import { useUserConfig } from '../../hooks/use-user-config';
 import { RootState } from '../../redux';
+import { updateUniqueId } from '../../redux/base';
 import { resetUserModules, updateAvatar, updateBio, updateSocialLinks, updateUsername } from '../../redux/my';
 import AddModule from './components/add-module';
 import BaseInfo from './components/base-info';
@@ -24,9 +26,10 @@ export default function Playground() {
 
   useUserConfig({
     onSuccess: (response) => {
+      dispatch(updateUniqueId(response.id));
       dispatch(updateUsername(response.baseConfig.name || response.username));
       dispatch(updateBio(response.baseConfig.bio || ''));
-      dispatch(updateAvatar(response.baseConfig.avatar));
+      dispatch(updateAvatar(addTsAfterUrl(response.baseConfig.avatar)));
       dispatch(updateSocialLinks(parseJSON(response.baseConfig.platform || '[]')));
     },
   });

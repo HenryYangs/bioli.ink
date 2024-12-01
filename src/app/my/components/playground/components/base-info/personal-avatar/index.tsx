@@ -17,12 +17,12 @@ import { FileType } from '@/app/types/my';
 import { cls } from '@/app/utils/string';
 import { file2base64 } from '@/app/utils/transform';
 
-import { BTN_CONFIRM_TEXT, DEFAULT_COMPLETED_CROP } from './config';
+import { BTN_CONFIRM_TEXT, DEFAULT_COMPLETED_CROP, IMG_MAX_SIZE } from './config';
 import style from './personal-avatar.module.scss';
-import { AvatarStatus } from './types';
+import { AvatarStatus, PersonalAvatarProps } from './types';
 import { canvasPreview, centerAspectCrop, getRealCroppedImage } from './utils';
 
-export default function PersonalAvatar({ onSuccess }: { onSuccess: (url: string) => void }) {
+export default function PersonalAvatar({ userId, onSuccess }: PersonalAvatarProps) {
   const [status, setStatus] = useState<AvatarStatus>(AvatarStatus.SELECT);
   const [avatar, setAvatar] = useState('');
   const [crop, setCrop] = useState<Crop>();
@@ -44,12 +44,16 @@ export default function PersonalAvatar({ onSuccess }: { onSuccess: (url: string)
   };
 
   useEventListener(EVENTS.AVATAR_UPDATE, onAvatarUpdate);
+  const [imgSize, setImgSize] = useState({ width: 0, height: 0 });
 
   // 图片加载成功之后设置裁剪参数
   const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const { width, height } = e.currentTarget;
-
+    const { naturalWidth, naturalHeight } = e.currentTarget;
+    const width = Math.min(naturalWidth, IMG_MAX_SIZE);
+    const height = Math.min(naturalHeight, IMG_MAX_SIZE);
+    
     setCrop(centerAspectCrop(width, height, 1));
+    setImgSize({ width, height });
   }
 
   const onReSelect = () => {
@@ -66,6 +70,7 @@ export default function PersonalAvatar({ onSuccess }: { onSuccess: (url: string)
     if (status === AvatarStatus.UPLOAD) {
       runUploadAvatar({
         type: 'avatar',
+        name: userId,
         base64: finalCroppedAvatar.current,
       });
     } else if (status === AvatarStatus.CROP) {
@@ -104,71 +109,68 @@ export default function PersonalAvatar({ onSuccess }: { onSuccess: (url: string)
   };
 
   return (
-    <>
-      {avatar ? (
-        <>
-          <Button
-            size='md'
-            startContent={<i className='iconfont-my icon-my-reset'></i>}
-            color='warning'
-            variant='ghost'
-            className='w-[36px]'
-            onPress={onReset}
-            disabled={loading}
-          >重置</Button>
+    avatar ? (
+      <>
+        <Button
+          size='md'
+          startContent={<i className='iconfont-my icon-my-reset'></i>}
+          color='warning'
+          variant='ghost'
+          className='w-[36px]'
+          onPress={onReset}
+          disabled={loading}
+        >重置</Button>
 
+        <div className='flex justify-center items-center'>
           <ReactCrop
             crop={crop}
             onChange={(_, percentCrop) => setCrop(percentCrop)}
             onComplete={(c) => setCompletedCrop(c)}
-            minWidth={10}
-            maxWidth={300}
-            minHeight={10}
-            maxHeight={300}
             disabled={status === AvatarStatus.UPLOAD}
+            style={imgSize}
           >
             <Image
               ref={imgRef}
               alt='Crop me'
               src={avatar}
-              width={400}
-              height={300}
+              width={imgSize.width}
+              height={imgSize.height}
               onLoad={onImageLoad}
             />
           </ReactCrop>
+        </div>
 
-          {
-            completedCrop ? (
-              <canvas
-                ref={previewCanvasRef}
-                className='hidden'
-                style={{
-                  width: completedCrop.width,
-                  height: completedCrop.height,
-                }}
-              ></canvas>
-            ) : null
-          }
+        {
+          completedCrop ? (
+            <canvas
+              ref={previewCanvasRef}
+              className='hidden'
+              style={{
+                width: completedCrop.width,
+                height: completedCrop.height,
+              }}
+            ></canvas>
+          ) : null
+        }
 
-          <div className={style['btn-wrapper']}>
-            <Button
-              radius='full'
-              className={cls(style['btn-cancel'], 'btn-main-color-other')}
-              onPress={onReSelect}
-              isLoading={loading}
-              disabled={loading}
-            >重新选择</Button>
+        <div className={style['btn-wrapper']}>
+          <Button
+            radius='full'
+            className={cls(style['btn-cancel'], 'btn-main-color-other')}
+            onPress={onReSelect}
+            isLoading={loading}
+            disabled={loading}
+          >重新选择</Button>
 
-            <Button
-              radius='full'
-              className='btn-main-color'
-              onPress={onUploadPress}
-              isLoading={loading}
-              disabled={loading}
-            >{BTN_CONFIRM_TEXT[status]}</Button>
-          </div>
-        </>
-      ) : <DragAndDrop type={FileType.IMAGE} accept='image/*' />}
-    </>
+          <Button
+            radius='full'
+            className='btn-main-color'
+            onPress={onUploadPress}
+            isLoading={loading}
+            disabled={loading}
+          >{BTN_CONFIRM_TEXT[status]}</Button>
+        </div>
+      </>
+    ) : <DragAndDrop type={FileType.IMAGE} accept='image/*' />
   );
 };
