@@ -2,9 +2,11 @@ import { ReactSortable } from '@miestasmia/react-sortablejs';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { UserModule } from '@/app/types/my/module';
+import { parseJSON } from '@/app/utils/transform';
 
+import { useUserConfig } from '../../hooks/use-user-config';
 import { RootState } from '../../redux';
-import { resetUserModules } from '../../redux/my';
+import { resetUserModules, updateAvatar, updateBio, updateSocialLinks, updateUsername } from '../../redux/my';
 import AddModule from './components/add-module';
 import BaseInfo from './components/base-info';
 import URL from './components/modules-factory/url';
@@ -18,7 +20,17 @@ export default function Playground() {
 
   const setUserModules = (list: UserModule[]) => {
     dispatch(resetUserModules(list));
-  }
+  };
+
+  useUserConfig({
+    onSuccess: (response) => {
+      dispatch(updateUsername(response.baseConfig.name || response.username));
+      dispatch(updateBio(response.baseConfig.bio || ''));
+      dispatch(updateAvatar(response.baseConfig.avatar));
+      dispatch(updateSocialLinks(parseJSON(response.baseConfig.platform || '[]')));
+    },
+  });
+
   return (
     <div className={style.wrapper}>
       <main className={style['action-wrapper']}>
