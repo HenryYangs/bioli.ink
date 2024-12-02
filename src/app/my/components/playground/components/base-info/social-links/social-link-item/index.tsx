@@ -26,7 +26,7 @@ export default function SocialLinkItem({
 
   const onItemClick = () => {
     event.emit(
-      EVENTS.SHOW_MODAL_ADD_SOCIAL_LINK_ICON,
+      EVENTS.SHOW_MODAL_SOCIAL_LINK_ICON,
       linkItem,
       { backTo: EVENTS.SHOW_MODAL_SOCIAL_LINK, index, status: 'edit' }
     );

@@ -48,6 +48,5 @@ export interface UpdateUserConfigReq {
   otherType?: string;
   avatar?: string;
   bio?: string;
-  // TODO
-  platform?: unknown;
+  platform?: string;
 }

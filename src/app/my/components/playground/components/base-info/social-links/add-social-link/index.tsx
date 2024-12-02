@@ -44,7 +44,7 @@ export default function AddSocialLink() {
         {
           renderList.map(link => (
             <div key={link.id} className={cls(style['social-link-item'], 'hover-bg')}
-              onClick={() => { event.emit(EVENTS.SHOW_MODAL_ADD_SOCIAL_LINK_ICON, link) }}
+              onClick={() => { event.emit(EVENTS.SHOW_MODAL_SOCIAL_LINK_ICON, link) }}
             >
               <div className={style['social-link-info']}>
                 <i className={cls('iconfont-social-links', `icon-social-link-${link.icon}`, style['icon-platform'])}></i>

@@ -47,6 +47,11 @@ export default function PageView({
           <SocialLinks
             className={style['social-links']}
             links={socialLinks}
+            onClick={(props) => {
+              if (!props?.item) return;
+
+              window.open(props.item.link, '__blank');
+            }}
           />
         </section>
 

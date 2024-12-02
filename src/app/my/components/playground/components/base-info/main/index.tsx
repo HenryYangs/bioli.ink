@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Delete from '@/app/components/delete';
 import SocialLinks from '@/app/components/social-links';
+import { onClickProps } from '@/app/components/social-links/types';
 import { EVENTS } from '@/app/constant/events';
 import { RootState } from '@/app/my/redux';
 import { updateAvatar } from '@/app/my/redux/my';
-import { SocialLink } from '@/app/types/my';
 import event from '@/app/utils/event';
 import { cls } from '@/app/utils/string';
 
@@ -20,11 +20,11 @@ export default function BaseInfoMain({ className = '' }: { className?: string })
     dispatch(updateAvatar(''));
   };
 
-  const onSocialLinkClick = (props: { link?: SocialLink; index?: number} = {}) => {
-    const { link, index } = props;
+  const onSocialLinkClick = (props: onClickProps = {}) => {
+    const { item, index } = props;
 
-    if (socialLinks.length && Boolean(link)) {
-      event.emit(EVENTS.SHOW_MODAL_ADD_SOCIAL_LINK_ICON, link, {
+    if (socialLinks.length && Boolean(item)) {
+      event.emit(EVENTS.SHOW_MODAL_SOCIAL_LINK_ICON, item, {
         backTo: EVENTS.SHOW_MODAL_SOCIAL_LINK,
         index,
         status: 'edit',

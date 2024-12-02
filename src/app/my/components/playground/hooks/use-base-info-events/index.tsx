@@ -23,7 +23,6 @@ import SocialLinksPanel from '../../components/base-info/social-links/social-lin
 export const useBaseInfoEvents = () => {
   const dispatch = useDispatch();
   const { uniqueId } = useSelector((root: RootState) => root.base);
-  console.log('uniqueId', uniqueId)
   const { username, bio, socialLinks, /* socialLinksPosition */ } = useSelector((root: RootState) => root.my);
   
   const latestUniqueId = useLatest(uniqueId);
@@ -43,18 +42,19 @@ export const useBaseInfoEvents = () => {
   };
 
   const onAddSocialLink = (item: SocialLink) => {
-    const copy = [...latestSocialLinks.current];
+    const copy = [...latestSocialLinks.current, item];
 
-    dispatch(updateSocialLinks(copy.concat(item)));
+    dispatch(updateSocialLinks(copy));
+    runAsyncUpdateUserConfig({ platform: JSON.stringify(copy) });
   };
 
-  // TODO 使用唯一 key 来替换 index
   const onEditSocialLink = (index: number, item: SocialLink) => {
     const copy = [...latestSocialLinks.current];
 
     copy.splice(index, 1, item);
     dispatch(updateSocialLinks(copy));
-  }
+    runAsyncUpdateUserConfig({ platform: JSON.stringify(copy) });
+  };
 
   const showModalAvatar = () => {
     event.emit(EVENTS.SHOW_MODAL, {
@@ -73,6 +73,7 @@ export const useBaseInfoEvents = () => {
       footer: false
     });
   };
+
   const showModalBaseInfo = () => {
     event.emit(EVENTS.SHOW_MODAL, {
       title: '昵称和简介',
@@ -86,6 +87,7 @@ export const useBaseInfoEvents = () => {
       footer: false,
     });
   };
+
   const showModalSocialLink = () => {
     event.emit(EVENTS.SHOW_MODAL, {
       title: '社交平台链接',
@@ -130,7 +132,7 @@ export const useBaseInfoEvents = () => {
     });
   };
 
-  const showModalAddSocialLinkIcon = (
+  const showModalSocialLinkIcon = (
     item: SocialLink,
     options?: {
       backTo?: EVENTS,
@@ -138,6 +140,7 @@ export const useBaseInfoEvents = () => {
       index?: number,
     },
   ) => {
+
     event.emit(EVENTS.SHOW_MODAL, {
       title: `${options?.status === 'edit' ? '编辑' : '添加'}${item.name}图标`,
       body: (
@@ -150,7 +153,7 @@ export const useBaseInfoEvents = () => {
           onAdd={(info) => {
             onAddSocialLink({
               ...item,
-              ...info
+              ...info,
             });
             event.emit(EVENTS.HIDE_MODAL);
           }}
@@ -173,6 +176,6 @@ export const useBaseInfoEvents = () => {
     [EVENTS.SHOW_MODAL_BASE_INFO]: showModalBaseInfo,
     [EVENTS.SHOW_MODAL_SOCIAL_LINK]: showModalSocialLink,
     [EVENTS.SHOW_MODAL_ADD_SOCIAL_LINK]: showModalAddSocialLink,
-    [EVENTS.SHOW_MODAL_ADD_SOCIAL_LINK_ICON]: showModalAddSocialLinkIcon,
+    [EVENTS.SHOW_MODAL_SOCIAL_LINK_ICON]: showModalSocialLinkIcon,
   });
 }
