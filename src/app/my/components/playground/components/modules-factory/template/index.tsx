@@ -3,7 +3,7 @@ import { Switch } from '@nextui-org/switch';
 import { useDispatch } from 'react-redux';
 
 import DeleteContent from '@/app/components/delete/content';
-import { removeUserModule } from '@/app/my/redux/my';
+import { updateUserModule } from '@/app/my/redux/my';
 import { cls } from '@/app/utils/string';
 
 import { TYPE_TITLE_MAP } from '../config';
@@ -19,7 +19,7 @@ export default function ModuleTemplate({
 }: ModuleTemplateProps) {
   const dispatch = useDispatch();
   const onRemoveHandler = () => {
-    dispatch(removeUserModule(index));
+    dispatch(updateUserModule({ index, action: 'delete' }));
   };
 
   return (

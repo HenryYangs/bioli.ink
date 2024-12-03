@@ -22,6 +22,7 @@ export default function URL({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onBlurHandler = (key: string, event: any) => {
     dispatch(updateUserModule({
+      action: 'update',
       index,
       item: {
         ...item,
@@ -49,9 +50,9 @@ export default function URL({
           <AdvancedInput
             inputProps={{
               placeholder: '链接',
-              defaultValue: item.link,
+              defaultValue: item.url,
               onBlur: (event) => {
-                onBlurHandler('link', event);
+                onBlurHandler('url', event);
 
                 const value = (event.target as HTMLInputElement).value;
                 const result = value.match(/^http(s)?:\/\/(.*)/);

@@ -1,14 +1,16 @@
 import { ReactSortable } from '@miestasmia/react-sortablejs';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { UserModule } from '@/app/types/my/module';
+import { ModuleStatus, UserModule } from '@/app/types/my/module';
 import { parseJSON } from '@/app/utils/transform';
 import { addTsAfterUrl } from '@/app/utils/url';
 
+import { useQueryModule, useUpdateModule } from '../../hooks/use-module';
 import { useUserConfig } from '../../hooks/use-user-config';
 import { RootState } from '../../redux';
 import { updateUniqueId } from '../../redux/base';
-import { resetUserModules, updateAvatar, updateBio, updateSocialLinks, updateUsername } from '../../redux/my';
+import { updateAvatar, updateBio, updateSocialLinks, updateUserModule, updateUsername } from '../../redux/my';
 import AddModule from './components/add-module';
 import BaseInfo from './components/base-info';
 import URL from './components/modules-factory/url';
@@ -18,10 +20,13 @@ import style from './playground.module.scss';
 
 export default function Playground() {
   const { userModules } = useSelector((state: RootState) => state.my);
+  const renderList = useMemo(() => {
+    return userModules.modules.filter(module => module.status !== ModuleStatus.DELETED);
+  }, [userModules.modules]);
   const dispatch = useDispatch();
 
   const setUserModules = (list: UserModule[]) => {
-    dispatch(resetUserModules(list));
+    dispatch(updateUserModule({ list }));
   };
 
   useUserConfig({
@@ -33,6 +38,30 @@ export default function Playground() {
       dispatch(updateSocialLinks(parseJSON(response.baseConfig.platform || '[]')));
     },
   });
+
+  const { runAsync: runQueryModule } = useQueryModule();
+
+  useEffect(() => {
+    runQueryModule()
+      .then(response => {
+        dispatch(updateUserModule({
+          id: response.id,
+          list: parseJSON(response.json),
+        }));
+      })
+  }, []);
+
+  const { run: runUpdateModule } = useUpdateModule();
+
+  useEffect(() => {
+    if (!userModules.id) return;
+
+    // TODO 拖拽组件的问题，导致请求有点多，后面需要专项优化一下
+    runUpdateModule({
+      id: userModules.id,
+      json: JSON.stringify(userModules.modules),
+    });
+  }, [userModules]);
 
   return (
     <div className={style.wrapper}>
@@ -50,16 +79,13 @@ export default function Playground() {
             ghostClass='drag-ghost'
             chosenClass='drag-chosen'
             animation={200}
-            list={userModules.map(module => ({
-              ...module,
-              id: module['data-id']
-            }))}
+            list={renderList}
             setList={setUserModules}
             className={style.modules}
           >
             {
-              userModules.map((item, index) => {
-                return <URL index={index} key={item['data-id']} {...item} />;
+              renderList.map((item, index) => {
+                return <URL index={index} key={item.id} {...item} />;
               })
             }
           </ReactSortable>

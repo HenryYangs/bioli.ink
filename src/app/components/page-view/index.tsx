@@ -58,7 +58,7 @@ export default function PageView({
         <section className={style['user-modules']}>
           {
             userModules.map(module => {
-              return <URL key={module['data-id']} {...module} />
+              return <URL key={module.id} {...module} />
             })
           }
         </section>

@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 
 import PageView from '@/app/components/page-view';
 import { RootState } from '@/app/my/redux';
+import { ModuleStatus } from '@/app/types/my/module';
 
 import style from './preview.module.scss';
 
@@ -20,7 +21,7 @@ export default function Preview() {
             username={username}
             bio={bio}
             socialLinks={socialLinks}
-            userModules={userModules}
+            userModules={userModules.modules.filter(module => module.status !== ModuleStatus.DELETED)}
           />
         </div>
       </div>

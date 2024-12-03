@@ -1,11 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { SocialLink } from '@/app/types/my';
-import { UserModule } from '@/app/types/my/module';
+import { ModuleStatus, UserModule, UserModuleUrl } from '@/app/types/my/module';
 
 export enum SocialLinksPosition {
   TOP = 'top',
   BOTTOM = 'bottom',
+}
+
+interface UserModules {
+  id: string;
+  modules: UserModule[];
 }
 
 interface MyStore {
@@ -14,7 +19,7 @@ interface MyStore {
   bio: string;
   socialLinks: SocialLink[];
   socialLinksPosition?: SocialLinksPosition; // TODO
-  userModules: UserModule[];
+  userModules: UserModules;
 }
 
 const initialState: MyStore = {
@@ -23,7 +28,10 @@ const initialState: MyStore = {
   bio: '',
   socialLinks: [],
   socialLinksPosition: SocialLinksPosition.TOP,
-  userModules: [],
+  userModules: {
+    id: '',
+    modules: [],
+  }
 }
 
 export const mySlice = createSlice({
@@ -45,23 +53,58 @@ export const mySlice = createSlice({
     updateSocialLinksPosition: (state, action: PayloadAction<SocialLinksPosition>) => {
       state.socialLinksPosition = action.payload;
     },
-    addUserModule: (state, action: PayloadAction<UserModule>) => {
-      state.userModules.unshift(action.payload);
-    },
-    removeUserModule: (state, action: PayloadAction<number>) => {
-      state.userModules.splice(action.payload, 1);
-    },
-    updateUserModule: (state, action: PayloadAction<{ index: number; item: Partial<UserModule> }>) => {
-      const newUserModule = {
-        ...state.userModules[action.payload.index],
-        ...action.payload.item,
-      };
+    updateUserModule: (state, action: PayloadAction<{
+      id?: string;
+      item?: Partial<UserModule>;
+      index?: number;
+      action?: 'add' | 'update' | 'delete';
+      list?: UserModule[]
+    }>) => {
+      // 改 id
+      if (action.payload.id) {
+        state.userModules.id = action.payload.id;
+      }
 
-      state.userModules.splice(action.payload.index, 1, newUserModule);
+      // 全量更新 list
+      if (action.payload.list) {
+        state.userModules.modules = action.payload.list;
+      }
+
+      // 对某一项的增删改
+      if (action.payload.action) {
+        switch (action.payload.action) {
+          case 'add':
+            state.userModules.modules.unshift(action.payload.item as UserModuleUrl);
+            break;
+          case 'update':
+            if (action.payload.index !== undefined) {
+              const newUserModule = {
+                ...state.userModules.modules[action.payload.index],
+                ...action.payload.item,
+              };
+  
+              state.userModules.modules.splice(action.payload.index, 1, newUserModule);
+            }
+            break;
+          case 'delete':
+            if (action.payload.index !== undefined) {
+              const newUserModule = {
+                ...state.userModules.modules[action.payload.index],
+                status: ModuleStatus.DELETED,
+              }
+
+              state.userModules.modules.splice(action.payload.index, 1, newUserModule);
+            }
+            break;
+          default:
+            break;
+        }
+      }
     },
-    resetUserModules: (state, action: PayloadAction<UserModule[]>) => {
-      state.userModules = action.payload;
-    },
+    // TODO
+    // resetUserModules: (state, action: PayloadAction<UserModule[]>) => {
+    //   state.userModules.modules = action.payload;
+    // },
   },
 });
 
@@ -72,8 +115,6 @@ export const {
   updateBio,
   updateSocialLinks,
   updateSocialLinksPosition,
-  addUserModule,
-  removeUserModule,
   updateUserModule,
-  resetUserModules,
+  // resetUserModules,
 } = mySlice.actions;
