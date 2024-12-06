@@ -1,0 +1,19 @@
+.wrapper {
+  @apply flex items-center gap-4 flex-wrap;
+}
+
+.social-link {
+  @apply relative cursor-pointer text-[var(--main-text-color)];
+
+  .social-link_icon {
+    @apply text-[20px];
+  }
+}
+
+.description {
+  @apply text-[12px] ml-[5px];
+}
+
+.with-desc {
+  @apply border-[2px] rounded-full px-[8px] py-[2px];
+}

@@ -7,9 +7,5 @@ export interface onClickProps {
 
 export interface SocialLinksProps {
   links: SocialLink[];
-
-  mode?: 'edit' | 'view';
-  align?: 'center' | 'left' | 'right';
   className?: string;
-  onClick?: (props?: onClickProps) => void;
 }

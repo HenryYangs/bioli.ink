@@ -8,7 +8,7 @@ import { Avatar } from '@nextui-org/avatar';
 import { cls } from '@/app/utils/string';
 
 import FooterLogo from '../footer-logo';
-import SocialLinks from '../social-links';
+import SocialLinks from '../social-links/version-client';
 import URL from './components/url';
 import style from './page-view.module.scss';
 import { PageViewProps } from './types';
@@ -47,11 +47,6 @@ export default function PageView({
           <SocialLinks
             className={style['social-links']}
             links={socialLinks}
-            onClick={(props) => {
-              if (!props?.item) return;
-
-              window.open(props.item.link, '__blank');
-            }}
           />
         </section>
 

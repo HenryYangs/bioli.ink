@@ -1,0 +1,7 @@
+.wrapper {
+  @apply flex justify-center bg-[var(--background)] w-[100vw] h-[100vh];
+}
+
+.main-content {
+  @apply w-[inherit] max-w-[600px] overflow-y-auto;
+}

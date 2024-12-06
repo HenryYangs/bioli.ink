@@ -2,8 +2,8 @@ import { Avatar } from '@nextui-org/avatar';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Delete from '@/app/components/delete';
-import SocialLinks from '@/app/components/social-links';
-import { onClickProps } from '@/app/components/social-links/types';
+import SocialLinks from '@/app/components/social-links/version-admin';
+import { onClickProps } from '@/app/components/social-links/version-client/types';
 import { EVENTS } from '@/app/constant/events';
 import { RootState } from '@/app/my/redux';
 import { updateAvatar } from '@/app/my/redux/my';
@@ -55,8 +55,6 @@ export default function BaseInfoMain({ className = '' }: { className?: string })
         }
 
         <SocialLinks
-          mode='edit'
-          align='left'
           className={style['social-links']}
           links={socialLinks}
           onClick={onSocialLinkClick}

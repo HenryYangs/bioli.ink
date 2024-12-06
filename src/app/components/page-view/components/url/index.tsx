@@ -1,3 +1,5 @@
+'use client'
+
 import { Card, CardBody } from '@nextui-org/card';
 
 import { UserModuleUrlProps } from '@/app/types/my/module';

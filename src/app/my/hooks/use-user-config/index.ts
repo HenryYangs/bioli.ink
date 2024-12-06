@@ -1,10 +1,9 @@
 import useRequest from 'ahooks/lib/useRequest/src/useRequest';
 
-import { GetUserConfigRsp } from '@/app/types/api/config';
-
 import { getUserConfig } from '../../api/config';
+import { UserConfig } from '@/app/types/api/common';
 
-export const useUserConfig = ({ onSuccess }: { onSuccess: (response: GetUserConfigRsp) => void }) => {
+export const useUserConfig = ({ onSuccess }: { onSuccess: (response: UserConfig) => void }) => {
   const { run, data } = useRequest(getUserConfig, {
     onSuccess
   });
