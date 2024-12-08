@@ -3,25 +3,31 @@
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import useCountDown from 'ahooks/lib/useCountDown';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { EVENTS } from '@/app/constant/events';
 import event from '@/app/utils/event';
 import { prezero } from '@/app/utils/number';
+import { parseSearch } from '@/app/utils/url';
 
 import style from './auth-form.module.scss';
 import { useLogin } from './hooks/use-login';
 import { useRegister } from './hooks/use-register';
 import { useVerifyCode } from './hooks/use-verify-code';
+import { AuthFormStatus } from './types';
 
 export default function AuthForm() {
-  const [status, setStatus] = useState<'register' | 'login'>('register');
+  const [status, setStatus] = useState('');
   const [mobile, setMobile] = useState('');
   const [verifyCode, setVerifyCode] = useState('');
   const [isPhoneInvalid, setIsPhoneInvalid] = useState(false);
   const [isVerifyCodeInvalid, setIsVerifyCodeInvalid] = useState(false);
   const [verifyCodeDisabled, setVerifyCodeDisabled] = useState(false);
-  const isRegister = status === 'register';
+
+  useEffect(() => {
+    setStatus(parseSearch().action || AuthFormStatus.LOGIN);
+  }, []);
+  const isRegister = useMemo(() => status === 'register', [status]);
 
   const [targetDate, setTargetDate] = useState<number>();
   const [, countdownResp] = useCountDown({
@@ -31,10 +37,20 @@ export default function AuthForm() {
     },
   });
 
+  const onSuccess = () => {
+    const search = parseSearch();
+
+    if (search.redirect) {
+      location.replace(decodeURIComponent(search.redirect))
+    } else {
+      location.replace('/my');
+    }
+  };
+
   const [isLoading, setIsLoading] = useState(false);
   const { runAsync: runVerifyCode, loading: loadingVerifyCode } = useVerifyCode();
-  const { runAsync: runRegister } = useRegister();
-  const { runAsync: runLogin } = useLogin();
+  const { runAsync: runRegister } = useRegister({ onSuccess });
+  const { runAsync: runLogin } = useLogin({ onSuccess });
 
   const getVerifyCode = () => {
     if (loadingVerifyCode) return;
@@ -173,7 +189,7 @@ export default function AuthForm() {
       </section>
 
       <p className={style.lower}>
-        {isRegister ? '已' : '没'}有 bioli.ink 账户？去<Button variant='light' color='primary' size='md' className={style['btn-status']} onPress={() => { setStatus(isRegister ? 'login' : 'register') }}>{isRegister ? '登录' : '注册'}</Button>
+        {isRegister ? '已' : '没'}有 bioli.ink 账户？去<Button variant='light' color='primary' size='md' className={style['btn-status']} onPress={() => { setStatus(isRegister ? AuthFormStatus.LOGIN : AuthFormStatus.REGISTER) }}>{isRegister ? '登录' : '注册'}</Button>
       </p>
     </main>
   );

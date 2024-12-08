@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { EVENTS } from '@/app/constant/events';
-import { ApiStatus } from '@/app/types/common/http-status';
+import { ApiStatus, HttpStatus } from '@/app/types/common/http-status';
 
 import event from '../event';
 import { parseJSON, queryStringify } from '../transform';
@@ -65,13 +65,15 @@ instance.interceptors.request.use(
   }
 );
 
+let isProcessingError = false;
+
 // 添加响应拦截器
 instance.interceptors.response.use(
   function (response) {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
     // TODO 输出请求的返回内容
-
+    console.log('response', response)
     // TODO 处理登录态过期
     // if (response.data.code === CODE.LOGIC_STATUS.CLIENT_ERROR.LOGIN_STATUS_EXPIRED) {
     //   window.location.replace(`${window.location.protocol}//${window.location.host}/login?redirect=${encodeURIComponent(window.location.href)}`);
@@ -87,7 +89,6 @@ instance.interceptors.response.use(
       return Promise.resolve(response.data.data);
     }
 
-    // TODO 引入 redux 实现全局 message
     event.emit(EVENTS.SHOW_ALERT, {
       text: response.data.message || '请求失败，请重试',
       color: 'danger',
@@ -97,6 +98,28 @@ instance.interceptors.response.use(
   function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
+
+    console.log('error', error);
+    console.log('isProcessingError', isProcessingError)
+    console.log('error.status', error.status)
+
+    if (!String(error.status).startsWith('2') && isProcessingError) {
+      return;
+    }
+
+    if (error.status === HttpStatus.AUTHORIZATION_FAIL) {
+      isProcessingError = true;
+      location.replace(`${location.protocol}//${location.host}/auth?redirect=${encodeURIComponent(location.href)}`);
+
+      event.emit(EVENTS.SHOW_ALERT, {
+        text: '登录态过期，正在跳转',
+        color: 'danger',
+      });
+
+      return;
+    }
+
+
     event.emit(EVENTS.SHOW_ALERT, {
       text: error.response?.data?.message || '请求失败，请重试',
       color: 'danger',

@@ -3,7 +3,7 @@
  */
 export const parseSearch = (rawSearch?: string) => {
   if (!rawSearch) {
-    rawSearch = window.location.search;
+    rawSearch = location.search;
   }
 
   const search = rawSearch.replace(/^\?/, '');
