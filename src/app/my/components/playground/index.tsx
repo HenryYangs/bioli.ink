@@ -14,6 +14,7 @@ import { updateAvatar, updateBio, updateSocialLinks, updateUserModule, updateUse
 import AddModule from './components/add-module';
 import BaseInfo from './components/base-info';
 import URL from './components/modules-factory/url';
+import MyLink from './components/my-link';
 import Preview from './components/preview';
 // import StyleSettings from './components/style-settings';
 import style from './playground.module.scss';
@@ -67,6 +68,8 @@ export default function Playground() {
     <div className={style.wrapper}>
       <main className={style['action-wrapper']}>
         <div className={style['action-inner-wrapper']}>
+          <MyLink />
+
           <BaseInfo />
 
           {/* TODO */}

@@ -1,0 +1,11 @@
+.wrapper {
+  @apply px-[20px] py-[10px];
+}
+
+.inner-wrapper {
+  @apply flex gap-2 items-center;
+}
+
+.icon-copy {
+  @apply cursor-pointer text-[12px];
+}
