@@ -45,16 +45,22 @@ export default function MyLink() {
     <Card>
       <CardBody className={style.wrapper}>
         <div className={style['inner-wrapper']}>
-          <span>我的永久链接</span>
+          <span>我的永久链接：</span>
 
-          <Link
-            isExternal
-            color='danger'
-            underline='hover'
-            href={permanentLink}
-          >{permanentLink}</Link>
-
-          <i className={cls('iconfont-my', 'icon-my-copy', style['icon-copy'])} id='copyLink'></i>
+          {
+            username ? (
+              <>
+                <Link
+                  isExternal
+                  color='danger'
+                  underline='hover'
+                  href={permanentLink}
+                >{permanentLink}</Link>
+      
+                <i className={cls('iconfont-my', 'icon-my-copy', style['icon-copy'])} id='copyLink'></i>
+              </>
+            ) : null
+          }
         </div>
       </CardBody>
     </Card>
