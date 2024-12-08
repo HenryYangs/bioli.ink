@@ -5,8 +5,8 @@ import PageView from '../components/page-view';
 import { parseJSON } from '../utils/transform';
 import style from './username.module.scss';
 
-export default async function Slug({ params }: { params: { username: string } }) {
-  const data = await getClientUserInfo(params.username);
+export default async function Slug({ params }: { params: Promise<{ username: string }> }) {
+  const data = await getClientUserInfo((await params).username);
 
   // TODO 跳转 404
   if (!data) return null;
