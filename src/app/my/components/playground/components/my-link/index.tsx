@@ -2,7 +2,7 @@ import { Card, CardBody } from '@nextui-org/card';
 import { Link } from '@nextui-org/link';
 import useLatest from 'ahooks/lib/useLatest';
 import Clipboard from 'clipboard';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { EVENTS } from '@/app/constant/events';
@@ -14,11 +14,13 @@ import style from './my-link.module.scss';
 
 export default function MyLink() {
   const { username } = useSelector((root: RootState) => root.my);
-  const permanentLink = useMemo(() => {
-    return `${location.protocol}//${location.host}/${username}`;
-  }, [username]);
+  const [permanentLink, setPermanentLink] = useState('');
   const latestPermanentLink = useLatest(permanentLink);
 
+  useEffect(() => {
+    setPermanentLink(`${location.protocol}//${location.host}/${username}`);
+  }, [username]);
+  
   useEffect(() => {
     const clipboard = new Clipboard('#copyLink', {
       text: () => {
@@ -42,7 +44,7 @@ export default function MyLink() {
   }, []);
 
   return (
-    <Card>
+    <Card shadow='none'>
       <CardBody className={style.wrapper}>
         <div className={style['inner-wrapper']}>
           <span>我的永久链接：</span>

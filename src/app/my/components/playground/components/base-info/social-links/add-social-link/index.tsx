@@ -2,7 +2,7 @@ import { Input } from '@nextui-org/input';
 import { useEffect, useState } from 'react';
 
 import { EVENTS } from '@/app/constant/events';
-import { LIST_SOCIAL_LINKS } from '@/app/constant/list/social-links';
+import { LIST_SOCIAL_LINKS_WITH_TOP } from '@/app/constant/list/social-links';
 import event from '@/app/utils/event';
 import { cls } from '@/app/utils/string';
 
@@ -10,7 +10,7 @@ import style from './add-social-link.module.scss';
 
 export default function AddSocialLink() {
   const [search, setSearch] = useState('');
-  const [renderList, setRenderList] = useState(LIST_SOCIAL_LINKS);
+  const [renderList, setRenderList] = useState(LIST_SOCIAL_LINKS_WITH_TOP);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSearchChange = (event: any) => {
@@ -19,9 +19,9 @@ export default function AddSocialLink() {
 
   useEffect(() => {
     if (search === '') {
-      setRenderList(LIST_SOCIAL_LINKS);
+      setRenderList(LIST_SOCIAL_LINKS_WITH_TOP);
     } else {
-      setRenderList(LIST_SOCIAL_LINKS.filter(link => link.id.includes(search) || link.name.includes(search)));
+      setRenderList(LIST_SOCIAL_LINKS_WITH_TOP.filter(link => link.id.includes(search) || link.name.includes(search)));
     }
   }, [search]);
 

@@ -12,7 +12,7 @@ export const SOCIAL_LINKS_TEXT = {
   [SocialPlatform.BANDCAMP]: 'Bandcamp',
   [SocialPlatform.BAO_BAO_SHU]: '宝宝树',
   [SocialPlatform.BEHANCE]: 'Behance',
-  [SocialPlatform.BILI_BILI]: ' B站',
+  [SocialPlatform.BILI_BILI]: '哔哩哔哩',
   [SocialPlatform.BLUE_SKY]: 'Bluesky',
   [SocialPlatform.BOSS]: 'Boss 直聘',
   [SocialPlatform.CAMEO]: 'Cameo',
@@ -91,7 +91,7 @@ export const SOCIAL_LINKS_TEXT = {
   [SocialPlatform.ZHI_HU]: '知乎',
 } as const;
 
-export const LIST_SOCIAL_LINKS: SocialLink[] = [
+export const LIST_SOCIAL_LINKS: (SocialLink & { enable?: boolean; top?: boolean; })[] = [
   {
     id: SocialPlatform.ALI_PAY,
     name: SOCIAL_LINKS_TEXT[SocialPlatform.ALI_PAY],
@@ -187,6 +187,8 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
+    top: true,
   },
   {
     id: SocialPlatform.BLUE_SKY,
@@ -203,6 +205,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.CAMEO,
@@ -243,6 +246,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.DOU_YIN,
@@ -251,6 +255,8 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
+    top: true,
   },
   {
     id: SocialPlatform.DRIBBLE,
@@ -259,6 +265,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.DROPBOX,
@@ -291,6 +298,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.FACEBOOK,
@@ -299,6 +307,8 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
+    top: true,
   },
   {
     id: SocialPlatform.FEI_SHU,
@@ -307,6 +317,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.GITHUB,
@@ -315,6 +326,8 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
+    top: true,
   },
   {
     id: SocialPlatform.GITLAB,
@@ -323,6 +336,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.GOOD_READS,
@@ -363,6 +377,8 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
+    top: true,
   },
   {
     id: SocialPlatform.JD,
@@ -371,6 +387,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.SHI_JI_JIA_YUAN,
@@ -387,6 +404,8 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
+    top: true,
   },
   {
     id: SocialPlatform.KICK,
@@ -403,6 +422,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.LA_GOU,
@@ -411,6 +431,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.LAST_FM,
@@ -427,6 +448,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.LOFTER,
@@ -451,6 +473,8 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
+    top: true,
   },
   {
     id: SocialPlatform.MASTONDON,
@@ -467,6 +491,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.MEET_UP,
@@ -483,6 +508,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.ONLY_FANS,
@@ -523,6 +549,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.POSH_MARK,
@@ -555,6 +582,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.SIGNAL,
@@ -571,6 +599,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.SLACK,
@@ -587,6 +616,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.SOUL,
@@ -611,6 +641,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.SUBSTACK,
@@ -651,6 +682,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.THREADS,
@@ -667,6 +699,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.TUMBLR,
@@ -723,6 +756,8 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
+    top: true,
   },
   {
     id: SocialPlatform.WECHAT,
@@ -739,6 +774,8 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
+    top: true,
   },
   {
     id: SocialPlatform.WHATSAPP,
@@ -747,6 +784,7 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
   },
   {
     id: SocialPlatform.X,
@@ -755,6 +793,8 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
+    top: true,
   },
   {
     id: SocialPlatform.XIAN_YU,
@@ -771,6 +811,8 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
+    top: true,
   },
   {
     id: SocialPlatform.XUE_QIU,
@@ -787,6 +829,8 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
+    top: true,
   },
   {
     id: SocialPlatform.ZHI_HU,
@@ -795,8 +839,23 @@ export const LIST_SOCIAL_LINKS: SocialLink[] = [
     isDraft: false,
     description: '',
     link: '',
+    enable: true,
+    top: true,
   },
-];
+].filter(item => item.enable);
+
+// 列表处理了置顶项
+export const LIST_SOCIAL_LINKS_WITH_TOP = LIST_SOCIAL_LINKS.sort((prev, next) => {
+  if (prev.top && !next.top) {
+    return -1;
+  }
+
+  if (!prev.top && next.top) {
+    return 1;
+  }
+
+  return 0;
+});
 
 export const DEFAULT_SOCIAL_LINKS = [
   {

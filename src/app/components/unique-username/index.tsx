@@ -14,7 +14,7 @@ export default function UniqueUsername() {
     <div>
       <Input
         label='用户名'
-        description={`你的永久链接：bioli.ink/${username || 'username'}`}
+        description={`我的永久链接：bioli.ink/${username || 'username'}`}
         value={username}
         onValueChange={setUsername}
         maxLength={50}
